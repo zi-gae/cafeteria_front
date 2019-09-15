@@ -457,7 +457,8 @@ module.exports = function(webpackEnv) {
               ).concat({
                 loader: require.resolve("sass-loader"),
                 options: {
-                  data: `@import "${paths.appSrc}/config/_variableColors.scss";`
+                  data: '@import "_variableColors.scss";',
+                  includePaths: [path.resolve(__dirname, "./src/config")]
                 }
               }),
               sideEffects: true
