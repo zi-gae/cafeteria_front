@@ -1,9 +1,15 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
+import {
+  createStore,
+  combineReducers,
+  applyMiddleware /*compose*/
+} from "redux";
 import { createBrowserHistory } from "history";
-
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import users from "redux/modules/users";
 import thunk from "redux-thunk";
+import { composeWithDevTools } from "redux-devtools-extension";
+import { i18nState } from "redux-i18n";
+// import Reactotron from "../ReactotronConfig";
 
 //현재 개발(dev) 상태인지 배포(prod) 상태 인지 구분
 const env = process.env.NODE_ENV;
@@ -21,12 +27,20 @@ if (env === "development") {
 // 리듀서들로 이루어진 객체를 취하는 최상위 리듀서
 const reducer = combineReducers({
   users,
-  router: connectRouter(history)
+  router: connectRouter(history),
+  i18nState: i18nState
 });
 
-// redux store
-let store = initialState =>
-  createStore(reducer, applyMiddleware(...middleware));
+let store;
+
+if (env === "development") {
+  store = initialState =>
+    // createStore(reducer,compose(applyMiddleware(...middleware), Reactotron.createEnhancer()));
+    createStore(reducer, composeWithDevTools(applyMiddleware(...middleware)));
+} else {
+  // redux store
+  store = initialState => createStore(reducer, applyMiddleware(...middleware));
+}
 
 export { history };
 export default store();
