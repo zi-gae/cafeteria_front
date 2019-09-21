@@ -53,10 +53,13 @@
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.0.1",
     "redux": "^4.0.4",
+    "redux-i18n": "^1.5.18",
     "redux-thunk": "^2.3.0",
+    "reset-css": "^4.0.1",
     "resolve": "1.12.0",
     "resolve-url-loader": "3.1.0",
     "sass-loader": "7.2.0",
+    "sass-resources-loader": "^2.0.1",
     "semver": "6.3.0",
     "style-loader": "1.0.0",
     "terser-webpack-plugin": "1.4.1",
@@ -143,6 +146,7 @@
   "devDependencies": {
     "reactotron-react-js": "^3.3.2",
     "reactotron-redux": "^3.1.1",
+    "redux-devtools-extension": "^2.13.8",
     "redux-logger": "^3.0.6"
   }
 }
