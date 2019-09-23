@@ -1,1 +1,8 @@
 @import "~reset-css/reset.css";
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap");
+
+body {
+  background-color: $bg-color;
+  font-family: "맑은 고딕", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}

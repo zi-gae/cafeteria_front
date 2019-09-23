@@ -450,15 +450,15 @@ module.exports = function(webpackEnv) {
                 {
                   importLoaders: 2,
                   sourceMap: isEnvProduction && shouldUseSourceMap,
-                  camelCase: true
+                  camelCase: true,
+                  modules: true
                 }
-
                 // "sass-loader"
               ).concat({
-                loader: require.resolve("sass-loader")
-                // options: {
-                //   data: `@import "${paths.appSrc}/config/_variableColors.scss";`
-                // }
+                loader: require.resolve("sass-loader"),
+                options: {
+                  data: `@import "${paths.appSrc}/config/_variables.scss";`
+                }
               }),
               sideEffects: true
             },
