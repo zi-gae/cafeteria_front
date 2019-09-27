@@ -1,22 +1,36 @@
 .footer {
   max-width: $max-page-width;
   width: 100%;
-  margin: 0 auto;
+  margin: 55px auto;
   display: flex;
   justify-content: space-around;
   align-items: center;
   font-weight: normal;
-  font-size: 13px;
+  font-size: $small-font-size;
   text-transform: uppercase;
+  flex-wrap: wrap;
+  @include breakpoint(mobile) {
+    justify-content: center;
+  }
   .colum {
+    margin-bottom: 15px;
+    @include breakpoint(mobile) {
+      margin-bottom: 0;
+    }
     .nav {
       .list {
         display: flex;
+        flex-wrap: wrap;
+        @include breakpoint(mobile) {
+          justify-content: center;
+        }
         .listItem {
-          margin-right: 10px;
           color: $cp-right-color;
+          margin-right: 10px;
+          cursor: pointer;
           .copyRight {
             font-weight: bold;
+            color: $cp-right-color;
           }
         }
       }

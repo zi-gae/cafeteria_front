@@ -12,8 +12,9 @@ const Footer = (props, context) => {
             </li>
             <li className={styles.listItem}>공지사항</li>
             <li className={styles.listItem}>문의하기</li>
+            <li className={styles.listItem}>오픈소스</li>
+            <li className={styles.listItem}>국가선택</li>
             <li className={styles.listItem}>커뮤니티이용규칙</li>
-            <li className={styles.listItem}>개인정보처리방침</li>
           </ul>
         </nav>
       </div>
