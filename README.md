@@ -274,7 +274,7 @@ export const translations = {
 </I18n>
 ```
 
-`fallbackLang` prop 을 통ㄹ해 번역하지 않을 리터럴을 다른 언어로 표시 가능하다.
+`fallbackLang` prop 을 통해 번역하지 않을 리터럴을 다른 언어로 표시 가능하다.
 
 ```javascript
 <I18n translations={translations} initialLang="de" fallbackLang="en">
@@ -301,8 +301,6 @@ The language state is managed in a slice of the store named `i18nState`. Therefo
 import {otherreducers} from "./Yourproject"
 
 import {i18nState} from "redux-i18n"
-// with Immutable.js:
-import {i18nState} from "redux-i18n/immutable"
 
 const appReducer = combineReducers({
   otherreducers,
@@ -320,27 +318,6 @@ const defaultI18nState = {
   translations: {},
   forceRefresh: false
 }
-
-// immutablejs
-const defaultI18nState = new Map({
-  lang: 'en',
-  translations: {},
-  forceRefresh: false
-})
-```
-
-When you [map your state to props with connect](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) you can also access the `lang` attribute in your components:
-
-```javascript
-export default connect(state => ({
-  lang: state.i18nState.lang,
-}))(Home)
-
-// with Immutable.js:
-export default connect(state => ({
-  lang: state.getIn(['i18nState', 'lang']),
-}))(Home)
-
 ```
 `translations` object allows to set an options node. There you can set a plurals form rule and a plurals number. For example:
 
@@ -381,6 +358,34 @@ export const translations = {
   }
 }
 ```
+
+# SASS mixin
+
+__mixin 이란?__
+- scss 에서 반복작업을 쉽게 할 수 있음
+- condition 에 따른 결과를 다르게 할 수 있음.
+
+## Usage
+
+`@content`
+Mixin에 @content이 이 포함 되있으면 `스타일` 부분을 return 할 수 있다.
+
+위와 같은 방법으로 기존 scss 에 속성을 추가 할 수 있다.
+```
+@mixin 믹스인이름() {
+  스타일;
+  @content;
+}
+
+@include 믹스인이름() {
+  // 스타일 블록
+  스타일;
+}
+```
+
+
+
+
 
 
 
