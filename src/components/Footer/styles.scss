@@ -8,6 +8,7 @@
   font-weight: normal;
   font-size: $small-font-size;
   text-transform: uppercase;
+  margin-bottom: 0px;
   flex-wrap: wrap;
   @include breakpoint(mobile) {
     justify-content: center;
