@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import Container from "./Container";
+import AppContainer from "./AppContainer";
 
 const mapStateToProps = (state, ownProps) => {
   const { user } = state;
@@ -8,4 +8,4 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-export default connect(mapStateToProps)(Container);
+export default connect(mapStateToProps)(AppContainer);
