@@ -3,7 +3,9 @@ import styles from "./styles.scss";
 
 const SignupPresenter = props => (
   <div className={styles.formComponent}>
-    <span className={styles.forgotLink}>비밀번호를 잊어버리셨나요?</span>
+    <span className={styles.forgotLink}>
+      회원가입 하고 다양한 서비스를 즐기세요!
+    </span>
     <span className={styles.divider}>or</span>
     <form className={styles.form}>
       <input type="text" placeholder="학번" className={styles.textInput} />

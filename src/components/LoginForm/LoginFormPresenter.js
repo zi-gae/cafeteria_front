@@ -3,7 +3,10 @@ import styles from "./styles.scss";
 
 const LoginFormPresenter = props => (
   <div className={styles.formComponent}>
-    <span className={styles.forgotLink}>비밀번호를 잊어버리셨나요?</span>
+    <span className={styles.forgotLink}>
+      비밀번호를 잊어버리셨나요?
+      <a href=""> find</a>
+    </span>
     <span className={styles.divider}>or</span>
     <form className={styles.form}>
       <input type="text" className={styles.textInput} />

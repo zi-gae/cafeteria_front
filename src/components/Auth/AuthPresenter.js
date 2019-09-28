@@ -27,14 +27,14 @@ const AuthPresenter = (props, context) => {
         <WhiteBox className={styles.whiteBox}>
           {account ? (
             <Text>
-              동명대 학식이 처음이신가요?
+              동명대 학식이 처음이신가요?{" "}
               <Text className={styles.changeLink} onClick={changeAction}>
                 회원가입
               </Text>
             </Text>
           ) : (
             <Text>
-              계정이 있으신가요?
+              계정이 있으신가요?{" "}
               <Text className={styles.changeLink} onClick={changeAction}>
                 로그인
               </Text>
