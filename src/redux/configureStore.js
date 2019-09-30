@@ -6,6 +6,7 @@ import {
 import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import user from "redux/modules/user";
+import posts from "redux/modules/posts";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { i18nState } from "redux-i18n";
@@ -27,6 +28,7 @@ if (env === "development") {
 // 리듀서들로 이루어진 객체를 취하는 최상위 리듀서
 const reducer = combineReducers({
   user,
+  posts,
   router: connectRouter(history),
   i18nState: i18nState
 });
