@@ -5,6 +5,7 @@ import { Route } from "react-router-dom";
 import React from "react";
 import Auth from "components/Auth";
 import Navigation from "../Navigation";
+import Feed from "components/Feed";
 
 const AppPresenter = props => {
   const { isLoggedIn } = props;
@@ -23,7 +24,7 @@ const AppPresenter = props => {
 
 const PrivateRouter = props => (
   <>
-    <Route exact path="/" render={() => "logged in ! "} />
+    <Route exact path="/" component={Feed} />
     <Route path="/explore" render={() => "explore !"} />
   </>
 );
