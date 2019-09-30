@@ -4,11 +4,13 @@ import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import React from "react";
 import Auth from "components/Auth";
+import Navigation from "../Navigation";
 
 const AppPresenter = props => {
   const { isLoggedIn } = props;
   return (
     <>
+      {props.isLoggedIn ? <Navigation /> : null}
       {isLoggedIn ? (
         <PrivateRouter></PrivateRouter>
       ) : (

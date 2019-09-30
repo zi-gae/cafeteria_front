@@ -11,9 +11,9 @@ import { translations } from "translations";
 ReactDOM.render(
   <Provider store={store}>
     <ConnectedRouter history={history}>
-      <I18n translations={translations} initialLang="kr">
-        <App />
-      </I18n>
+      {/* <I18n translations={translations} initialLang="kr"> */}
+      <App />
+      {/* </I18n> */}
     </ConnectedRouter>
   </Provider>,
 
