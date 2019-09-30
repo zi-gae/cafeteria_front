@@ -1,3 +1,4 @@
 import LoginFormContainer from "./LoginFormContainer";
+import { connect } from "react-redux";
 
-export default LoginFormContainer;
+export default connect()(LoginFormContainer);

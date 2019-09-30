@@ -2,6 +2,6 @@ import React from "react";
 import AppPresenter from "./AppPresenter";
 
 const AppContainer = props => {
-  return <AppPresenter {...props}></AppPresenter>;
+  return <AppPresenter {...props} />;
 };
 export default AppContainer;

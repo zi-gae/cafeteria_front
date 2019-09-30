@@ -1,3 +1,4 @@
 import SignupContainer from "./SignupContainer";
+import { connect } from "react-redux";
 
-export default SignupContainer;
+export default connect()(SignupContainer);
