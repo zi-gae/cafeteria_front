@@ -1,11 +1,10 @@
 import SignupPresenter from "./SignupPresenter";
-
+import PropTypes from "prop-types";
 import React, { Component } from "react";
 
 class SignupContainer extends Component {
   constructor() {
     super();
-
     this.state = {
       stdntNumber: "",
       username: "",
@@ -13,6 +12,11 @@ class SignupContainer extends Component {
       password: ""
     };
   }
+
+  static propTypes = {
+    createAccount: PropTypes.func.isRequired
+  };
+
   _handleInputChage = e => {
     const {
       target: { name, value }
@@ -21,7 +25,11 @@ class SignupContainer extends Component {
       [name]: value
     });
   };
+
   _handleSubmit = e => {
+    const { stdntNumber, username, nickname, password } = this.state;
+    const { createAccount } = this.props;
+    createAccount(stdntNumber, username, nickname, password);
     e.preventDefault();
   };
 
