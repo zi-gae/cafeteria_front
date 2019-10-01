@@ -1,5 +1,5 @@
 import Footer from "components/Footer";
-import styles from "./styles.scss";
+import "./styles.scss";
 import PropTypes from "prop-types";
 import { Route } from "react-router-dom";
 import React from "react";

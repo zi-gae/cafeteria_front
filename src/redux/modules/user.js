@@ -1,5 +1,5 @@
 // import
-
+import axios from "axios";
 // actions
 const LOGOUT = "LOGOUT";
 const SAVE_TOKEN = "SAVE_TOKEN";
@@ -20,49 +20,57 @@ const logout = () => {
 
 // API actions
 const usernameLogin = (username, password) => {
-  return dispatch => {
-    fetch("/rest-auth/login/", {
-      method: "POST",
+  return async dispatch => {
+    const res = await axios({
+      method: "post",
+      url: "/rest-auth/login/",
       headers: {
-        "Content-Type": "application/json"
+        "content-Type": "application/json"
       },
-      body: JSON.stringify({
+      data: {
         username,
         password
-      })
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (json.token) {
-          dispatch(saveToken(json.token));
-        }
-      })
-      .catch(err => console.log(err));
+      }
+    });
+    const {
+      data: { token }
+    } = res;
+    try {
+      if (token) {
+        dispatch(saveToken(token));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 
-const createAccount = (stdntNumber, username, nickname, password) => {
-  return dispatch => {
-    fetch("/rest-auth/registration/", {
-      method: "POST",
+const createAccount = (username, password, name, email) => {
+  return async dispatch => {
+    const res = await axios({
+      method: "post",
+      url: "/rest-auth/registration/",
       headers: {
-        "Content-Type": "application/json"
+        "content-Type": "application/json"
       },
-      body: JSON.stringify({
-        stdntNumber,
+      data: {
         username,
-        nickname,
         password1: password,
-        password2: password
-      })
-    })
-      .then(res => res.json())
-      .then(json => {
-        if (json.token) {
-          dispatch(saveToken(json.token));
-        }
-      })
-      .catch(err => console.log(err));
+        password2: password,
+        name,
+        email
+      }
+    });
+    const {
+      data: { token }
+    } = res;
+    try {
+      if (token) {
+        dispatch(saveToken(token));
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

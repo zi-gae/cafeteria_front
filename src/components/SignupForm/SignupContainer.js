@@ -6,9 +6,9 @@ class SignupContainer extends Component {
   constructor() {
     super();
     this.state = {
-      stdntNumber: "",
+      stdntnum: "",
       username: "",
-      nickname: "",
+      email: "",
       password: ""
     };
   }
@@ -27,21 +27,21 @@ class SignupContainer extends Component {
   };
 
   _handleSubmit = e => {
-    const { stdntNumber, username, nickname, password } = this.state;
+    const { stdntnum, username, email, password } = this.state;
     const { createAccount } = this.props;
-    createAccount(stdntNumber, username, nickname, password);
+    createAccount(username, password, stdntnum, email);
     e.preventDefault();
   };
 
   render() {
-    const { stdntNumber, username, nickname, password } = this.state;
+    const { stdntnum, username, email, password } = this.state;
     const { _handleInputChage, _handleSubmit } = this;
 
     return (
       <SignupPresenter
-        stdntNumber={stdntNumber}
+        stdntnum={stdntnum}
         username={username}
-        nickname={nickname}
+        email={email}
         password={password}
         handleInputChage={_handleInputChage}
         handleSubmit={_handleSubmit}

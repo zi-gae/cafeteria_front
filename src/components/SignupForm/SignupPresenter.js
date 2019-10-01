@@ -14,9 +14,9 @@ const InputUnivId = styled.input``;
 
 const SignupPresenter = props => {
   const {
-    stdntNumber,
+    stdntnum,
     username,
-    nickname,
+    email,
     password,
     handleInputChage,
     handleSubmit
@@ -28,14 +28,6 @@ const SignupPresenter = props => {
       </Text>
       <Text className={styles.divider}>and</Text>
       <Form className={styles.form} onSubmit={handleSubmit}>
-        <InputUnivId
-          type="text"
-          placeholder="학번"
-          className={styles.textInput}
-          onChange={handleInputChage}
-          value={stdntNumber}
-          name="stdntNumber"
-        />
         <InputId
           type="text"
           placeholder="아이디"
@@ -43,14 +35,6 @@ const SignupPresenter = props => {
           onChange={handleInputChage}
           value={username}
           name="username"
-        />
-        <InputName
-          type="username"
-          placeholder="닉네임"
-          className={styles.textInput}
-          onChange={handleInputChage}
-          value={nickname}
-          name="nickname"
         />
         <InputPwd
           type="password"
@@ -60,6 +44,22 @@ const SignupPresenter = props => {
           value={password}
           name="password"
         />
+        <InputUnivId
+          type="text"
+          placeholder="학번"
+          className={styles.textInput}
+          onChange={handleInputChage}
+          value={stdntnum}
+          name="stdntnum"
+        />
+        <InputName
+          type="email"
+          placeholder="이메일"
+          className={styles.textInput}
+          onChange={handleInputChage}
+          value={email}
+          name="email"
+        />
         <InputBtn type="submit" value="회원가입" className={styles.button} />
       </Form>
     </Container>
@@ -67,9 +67,9 @@ const SignupPresenter = props => {
 };
 
 SignupPresenter.propTypes = {
-  stdntNumber: PropTypes.string.isRequired,
+  stdntnum: PropTypes.string.isRequired,
   username: PropTypes.string.isRequired,
-  nickname: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   handleInputChage: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired

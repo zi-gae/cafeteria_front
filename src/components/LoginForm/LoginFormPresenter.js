@@ -17,7 +17,7 @@ const LoginFormPresenter = props => {
     <Container className={styles.formComponent}>
       <Text className={styles.forgotLink}>
         비밀번호를 잊어버리셨나요?
-        <a href=""> find</a>
+        <a href="..."> find</a>
       </Text>
       <Text className={styles.divider}>or</Text>
       <Form className={styles.form} onSubmit={handleSubmit}>
