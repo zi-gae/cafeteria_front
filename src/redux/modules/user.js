@@ -45,7 +45,7 @@ const usernameLogin = (username, password) => {
   };
 };
 
-const createAccount = (username, password, name, email) => {
+const createAccount = (username, password, stdntnum, nickname, email) => {
   return async dispatch => {
     const res = await axios({
       method: "post",
@@ -57,7 +57,8 @@ const createAccount = (username, password, name, email) => {
         username,
         password1: password,
         password2: password,
-        name,
+        stdntnum,
+        name: nickname,
         email
       }
     });

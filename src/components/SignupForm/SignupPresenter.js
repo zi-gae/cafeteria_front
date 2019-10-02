@@ -17,6 +17,7 @@ const SignupPresenter = props => {
     stdntnum,
     username,
     email,
+    nickname,
     password,
     handleInputChage,
     handleSubmit
@@ -43,6 +44,14 @@ const SignupPresenter = props => {
           onChange={handleInputChage}
           value={password}
           name="password"
+        />
+        <InputPwd
+          type="text"
+          placeholder="닉네임"
+          className={styles.textInput}
+          onChange={handleInputChage}
+          value={nickname}
+          name="nickname"
         />
         <InputUnivId
           type="text"
@@ -71,6 +80,7 @@ SignupPresenter.propTypes = {
   username: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
+  nickname: PropTypes.string.isRequired,
   handleInputChage: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired
 };

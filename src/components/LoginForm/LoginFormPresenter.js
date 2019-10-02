@@ -21,7 +21,8 @@ const LoginFormPresenter = props => {
       </Text>
       <Text className={styles.divider}>or</Text>
       <Form className={styles.form} onSubmit={handleSubmit}>
-        <Input type="text" className={styles.textInput} />
+        <Input type="text" className={styles.opacity} />
+
         <InputId
           type="text"
           placeholder="아이디"
@@ -38,7 +39,8 @@ const LoginFormPresenter = props => {
           onChange={handleInputChange}
           name="password"
         />
-        <Input type="text" className={styles.textInput} />
+        <Input type="text" className={styles.opacity} />
+        <Input type="text" className={styles.opacity} />
         <InputBtn type="submit" value="로그인" className={styles.button} />
       </Form>
     </Container>

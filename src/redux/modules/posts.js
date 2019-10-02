@@ -4,6 +4,8 @@ import { actionCreators as userActions } from "redux/modules/user";
 
 //  actions
 
+const SET_FEED = "SET_FEED";
+
 // action creators
 
 // api actions
