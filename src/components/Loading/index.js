@@ -3,10 +3,6 @@ import styles from "./styles.scss";
 import { ClassicSpinner } from "react-spinners-kit";
 
 const index = props => {
-  return (
-    <div className={styles.feed}>
-      <ClassicSpinner size={30} color="#686769" />
-    </div>
-  );
+  return <ClassicSpinner size={30} color="#686769" />;
 };
 export default index;
