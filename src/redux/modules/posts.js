@@ -1,5 +1,5 @@
 // imports
-
+// import axios from "axios";
 import { actionCreators as userActions } from "redux/modules/user";
 
 //  actions
@@ -8,6 +8,12 @@ const SET_FEED = "SET_FEED";
 
 // action creators
 
+const setFeed = feed => {
+  return {
+    type: SET_FEED,
+    feed: feed
+  };
+};
 // api actions
 
 const getFeed = () => {
@@ -15,7 +21,8 @@ const getFeed = () => {
     const {
       user: { token }
     } = getState();
-    fetch("/images/", {
+
+    fetch("/posts/", {
       headers: {
         Authorization: `JWT ${token}`
       }
@@ -26,7 +33,7 @@ const getFeed = () => {
         }
         return res.json();
       })
-      .then(json => console.log(json))
+      .then(json => dispatch(setFeed(json)))
       .catch(err => console.log("Err: ", err));
   };
 };
@@ -39,12 +46,22 @@ const initialState = {};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_FEED:
+      return applySetFeed(state, action);
     default:
       return state;
   }
 };
 
 // reducer func
+
+const applySetFeed = (state, action) => {
+  const { feed } = action;
+  return {
+    ...state,
+    feed
+  };
+};
 
 // exports
 

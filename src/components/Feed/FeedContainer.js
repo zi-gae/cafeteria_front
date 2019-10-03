@@ -13,14 +13,29 @@ class FeedContainer extends Component {
     getFeed: PropTypes.func.isRequired
   };
 
-  componentDidMount = () => {
-    const { getFeed } = this.props;
-    getFeed();
+  componentDidMount() {
+    const { getFeed, feed } = this.props;
+    if (!feed) {
+      getFeed();
+    } else {
+      this.setState({
+        loading: false
+      });
+    }
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.feed) {
+      this.setState({
+        loading: false
+      });
+    }
   };
 
   render() {
     const { loading } = this.state;
-    return <FeedPresenter loading={loading} />;
+    const { feed } = this.props;
+    return <FeedPresenter loading={loading} feed={feed} />;
   }
 }
 

@@ -2,6 +2,15 @@ import { connect } from "react-redux";
 import FeedContainer from "./FeedContainer";
 import { actionCreators as postActions } from "redux/modules/posts";
 
+const mapStateToProps = (state, ownProps) => {
+  const {
+    posts: { feed }
+  } = state;
+  return {
+    feed: feed
+  };
+};
+
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getFeed: () => {
@@ -11,6 +20,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FeedContainer);
