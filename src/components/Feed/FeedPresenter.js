@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import styles from "./styles.scss";
 import Loading from "components/Loading";
 import styled from "styled-components";
-import FeedPosts from "components/FeedPosts";
+import FeedPost from "components/FeedPost";
 
 const Container = styled.div``;
 
@@ -16,11 +16,18 @@ const FeedPresenter = props => {
   ) : (
     <Container className={styles.feed}>
       {feed.map(post => (
-        <FeedPosts
+        <FeedPost
           key={post.id}
           title={post.title}
           content={post.content}
-        ></FeedPosts>
+          creator={post.creator}
+          title={post.title}
+          file={post.file}
+          like_count={post.like_count}
+          comments={post.comments}
+          created_at={post.created_at}
+          updated_at={post.updated_at}
+        ></FeedPost>
       ))}
     </Container>
   );
