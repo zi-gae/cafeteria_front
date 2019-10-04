@@ -21,7 +21,6 @@ const FeedPresenter = props => {
           title={post.title}
           content={post.content}
           creator={post.creator}
-          title={post.title}
           file={post.file}
           like_count={post.like_count}
           comments={post.comments}

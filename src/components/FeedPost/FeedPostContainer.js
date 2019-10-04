@@ -17,7 +17,6 @@ const FeedPostContainer = props => {
       title={title}
       content={content}
       creator={creator}
-      title={title}
       file={file}
       like_count={like_count}
       comments={comments}
