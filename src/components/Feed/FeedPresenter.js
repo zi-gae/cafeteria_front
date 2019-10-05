@@ -26,6 +26,7 @@ const FeedPresenter = props => {
           comments={post.comments}
           natural_time={post.natural_time}
           updated_at={post.updated_at}
+          comment_count={post.comment_count}
         ></FeedPost>
       ))}
     </Container>

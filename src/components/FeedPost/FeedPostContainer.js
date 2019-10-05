@@ -10,7 +10,8 @@ const FeedPostContainer = props => {
     like_count,
     comments,
     natural_time,
-    updated_at
+    updated_at,
+    comment_count
   } = props;
   return (
     <FeedPostPresenter
@@ -22,6 +23,7 @@ const FeedPostContainer = props => {
       comments={comments}
       natural_time={natural_time}
       updated_at={updated_at}
+      comment_count={comment_count}
     ></FeedPostPresenter>
   );
 };

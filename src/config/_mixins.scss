@@ -21,6 +21,20 @@
     }
   }
 }
+@mixin actionIcon($type) {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  @if $type == heart {
+    @media (color: $tu-color-first) {
+      @content;
+    }
+  } @else if $type == comment {
+    @media (color: #24a5af) {
+      @content;
+    }
+  }
+}
 
 @mixin boxBorder($radius) {
   border: 1px solid #e6e6e6;

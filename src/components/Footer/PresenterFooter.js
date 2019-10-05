@@ -12,7 +12,7 @@ const CopyRight = styled.span``;
 const PresenterFooter = () => {
   return (
     <Container className={styles.footer}>
-      <Column className={styles.colum}>
+      <Column className={styles.column}>
         <Nav className={styles.nav}>
           <List className={styles.list}>
             <Li className={styles.listItem}>

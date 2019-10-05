@@ -1,0 +1,30 @@
+.actions {
+  margin-bottom: 15px;
+  border-bottom: 1px solid $light-grey;
+  .icons {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+  .heart {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    color: $tu-color-first;
+    margin-right: 10px;
+  }
+  .comment {
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 15px;
+    color: #24a5af;
+  }
+  .likes {
+    font-weight: 600;
+    cursor: pointer;
+  }
+}

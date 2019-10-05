@@ -1,11 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import TimeStamp from "components/TimeStamp";
+import styles from "./styles.scss";
+import styled from "styled-components";
+
+const Container = styled.div``;
+const List = styled.ul``;
+const Item = styled.li``;
+const Username = styled.span``;
+const Message = styled.span``;
 
 const PostCommentsPresenter = props => {
   return (
-    <div>
-      <ul>
+    <Container className={styles.comments}>
+      <List styles={styles.list}>
         {props.comments.map(comment => (
           <Comment
             username={comment.creator.username}
@@ -15,21 +23,21 @@ const PostCommentsPresenter = props => {
             time={comment.natural_time}
           />
         ))}
-      </ul>
-    </div>
+      </List>
+    </Container>
   );
 };
 
 const Comment = props => (
-  <li>
-    <span>{props.username}</span>{" "}
-    <span>
+  <Item className={styles.comment}>
+    <Username className={styles.username}>{props.username}</Username>{" "}
+    <Message className={styles.message}>
       {props.referComment !== null
         ? `대댓글 id: ${props.referComment} ${props.comment}`
         : props.comment}
       <TimeStamp format="comment" time={props.time}></TimeStamp>
-    </span>
-  </li>
+    </Message>
+  </Item>
 );
 
 PostCommentsPresenter.propTypes = {
