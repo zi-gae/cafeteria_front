@@ -24,7 +24,7 @@ const FeedPresenter = props => {
           file={post.file}
           like_count={post.like_count}
           comments={post.comments}
-          created_at={post.created_at}
+          natural_time={post.natural_time}
           updated_at={post.updated_at}
         ></FeedPost>
       ))}

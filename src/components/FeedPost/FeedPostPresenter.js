@@ -3,6 +3,7 @@ import styles from "./styles.scss";
 import PropTypes from "prop-types";
 import PostActions from "components/PostActions";
 import PostComments from "components/PostComments";
+import TimeStamp from "components/TimeStamp";
 
 const FeedPostPresenter = props => {
   return (
@@ -25,6 +26,7 @@ const FeedPostPresenter = props => {
           creator={props.creator.username}
           comments={props.comments}
         ></PostComments>
+        <TimeStamp format="post" time={props.natural_time}></TimeStamp>
       </div>
     </div>
   );
@@ -42,14 +44,14 @@ FeedPostPresenter.propTypes = {
   comments: PropTypes.arrayOf(
     PropTypes.shape({
       message: PropTypes.string.isRequired,
-      created_at: PropTypes.string,
+      natural_time: PropTypes.string.isRequired,
       creator: PropTypes.shape({
         profile_image: PropTypes.string,
         username: PropTypes.string.isRequired
       }).isRequired
     })
   ).isRequired,
-  created_at: PropTypes.string.isRequired,
+  natural_time: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired
 };
 

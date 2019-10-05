@@ -9,7 +9,7 @@ const FeedPostContainer = props => {
     file,
     like_count,
     comments,
-    created_at,
+    natural_time,
     updated_at
   } = props;
   return (
@@ -20,7 +20,7 @@ const FeedPostContainer = props => {
       file={file}
       like_count={like_count}
       comments={comments}
-      created_at={created_at}
+      natural_time={natural_time}
       updated_at={updated_at}
     ></FeedPostPresenter>
   );
