@@ -1,8 +1,7 @@
 import React from "react";
 import PostActionsPresenter from "./PostActionsPresenter";
 
-const PostActionsContainer = props => {
-  const { likeCount, commentCount } = props;
+const PostActionsContainer = ({ likeCount, commentCount }) => {
   return (
     <PostActionsPresenter
       likeCount={likeCount}

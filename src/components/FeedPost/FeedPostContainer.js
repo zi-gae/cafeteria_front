@@ -1,29 +1,28 @@
 import React from "react";
 import FeedPostPresenter from "./FeedPostPresenter";
 
-const FeedPostContainer = props => {
-  const {
-    title,
-    content,
-    creator,
-    file,
-    like_count,
-    comments,
-    natural_time,
-    updated_at,
-    comment_count
-  } = props;
+const FeedPostContainer = ({
+  title,
+  content,
+  creator,
+  file,
+  likeCount,
+  comments,
+  naturalTime,
+  updated_at,
+  commentCount
+}) => {
   return (
     <FeedPostPresenter
       title={title}
       content={content}
       creator={creator}
       file={file}
-      like_count={like_count}
+      likeCount={likeCount}
       comments={comments}
-      natural_time={natural_time}
+      naturalTime={naturalTime}
       updated_at={updated_at}
-      comment_count={comment_count}
+      commentCount={commentCount}
     ></FeedPostPresenter>
   );
 };

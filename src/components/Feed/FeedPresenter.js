@@ -7,8 +7,7 @@ import FeedPost from "components/FeedPost";
 
 const Container = styled.div``;
 
-const FeedPresenter = props => {
-  const { loading, feed } = props;
+const FeedPresenter = ({ loading, feed }) => {
   return loading ? (
     <Container className={styles.feed}>
       <Loading></Loading>
@@ -22,11 +21,11 @@ const FeedPresenter = props => {
           content={post.content}
           creator={post.creator}
           file={post.file}
-          like_count={post.like_count}
+          likeCount={post.like_count}
           comments={post.comments}
-          natural_time={post.natural_time}
+          naturalTime={post.natural_time}
           updated_at={post.updated_at}
-          comment_count={post.comment_count}
+          commentCount={post.comment_count}
         ></FeedPost>
       ))}
     </Container>

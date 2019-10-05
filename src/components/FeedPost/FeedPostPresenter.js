@@ -18,43 +18,42 @@ const Content = styled.div``;
 const ImgBox = styled.div``;
 const Action = styled.div``;
 
-const FeedPostPresenter = props => {
+const FeedPostPresenter = ({
+  title,
+  content,
+  creator,
+  file,
+  likeCount,
+  comments,
+  naturalTime,
+  updated_at,
+  commentCount
+}) => {
   return (
     <Container className={styles.feedPost}>
       <Header className={styles.header}>
         <Img
           className={styles.image}
-          src={props.creator.profile_image || require("images/noProfile.png")}
-          alt={props.creator.username}
+          src={creator.profile_image || require("images/noProfile.png")}
+          alt={creator.username}
         />
         <HeaderColumn className={styles.headerColumn}>
-          <Creator className={styles.creator}>{props.creator.username}</Creator>
-          <TimeStamp time={props.natural_time}></TimeStamp>
+          <Creator className={styles.creator}>{creator.username}</Creator>
+          <TimeStamp time={naturalTime}></TimeStamp>
         </HeaderColumn>
       </Header>
       <PostBox className={styles.postBox}>
-        <Title className={styles.title}>{props.title}</Title>
-        <Content className={styles.content}>{props.content} </Content>
+        <Title className={styles.title}>{title}</Title>
+        <Content className={styles.content}>{content} </Content>
         <ImgBox className={styles.imageBox}>
-          {props.file ? (
-            <Img
-              className={styles.postImg}
-              src={props.file}
-              alt={props.content}
-            />
+          {file ? (
+            <Img className={styles.postImg} src={file} alt={content} />
           ) : null}
         </ImgBox>
       </PostBox>
       <Action className={styles.meta}>
-        <PostActions
-          likeCount={props.like_count}
-          commentCount={props.comment_count}
-        />
-        <PostComments
-          content={props.content}
-          creator={props.creator.username}
-          comments={props.comments}
-        ></PostComments>
+        <PostActions likeCount={likeCount} commentCount={commentCount} />
+        <PostComments comments={comments}></PostComments>
         <CommentBox></CommentBox>
       </Action>
     </Container>
@@ -69,7 +68,7 @@ FeedPostPresenter.propTypes = {
   content: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   file: PropTypes.string,
-  like_count: PropTypes.number.isRequired,
+  likeCount: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
       message: PropTypes.string.isRequired,
@@ -80,9 +79,9 @@ FeedPostPresenter.propTypes = {
       }).isRequired
     })
   ).isRequired,
-  natural_time: PropTypes.string.isRequired,
+  naturalTime: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
-  comment_count: PropTypes.number.isRequired
+  commentCount: PropTypes.number.isRequired
 };
 
 export default FeedPostPresenter;

@@ -1,8 +1,8 @@
 import React from "react";
 import PostCommentsPresenter from "./PostCommentsPresenter";
 
-const PostCommentsCotainer = props => {
-  return <PostCommentsPresenter {...props} />;
+const PostCommentsCotainer = ({ comments }) => {
+  return <PostCommentsPresenter comments={comments} />;
 };
 
 export default PostCommentsCotainer;

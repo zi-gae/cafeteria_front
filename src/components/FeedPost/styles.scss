@@ -16,7 +16,6 @@
     padding-top: 15px;
     display: flex;
     align-items: center;
-    // border-bottom: 1px solid $tu-color-first;
     margin-bottom: 10px;
     .image {
       width: 30px;
@@ -42,6 +41,7 @@
     .content {
       font-size: $small-font-size + 1;
       margin-bottom: 15px;
+      padding-right: 100px;
     }
     .imageBox {
       display: flex;
