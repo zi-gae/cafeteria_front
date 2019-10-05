@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./styles.scss";
 import PropTypes from "prop-types";
 import PostActions from "components/PostActions";
+import PostComments from "components/PostComments";
 
 const FeedPostPresenter = props => {
   return (
@@ -16,9 +17,14 @@ const FeedPostPresenter = props => {
           <span>{props.location}</span>
         </div>
       </header>
-      <img src={props.file} alt={props.caption} />
+      <img src={props.file} alt={props.content} />
       <div>
-        <PostActions number={props.like_count} />
+        <PostActions likeCount={props.like_count} />
+        <PostComments
+          content={props.content}
+          creator={props.creator.username}
+          comments={props.comments}
+        ></PostComments>
       </div>
     </div>
   );

@@ -4,8 +4,7 @@ import PropTypes from "prop-types";
 import IosHeartOutline from "react-ionicons/lib/IosHeartOutline";
 import IosTextOutline from "react-ionicons/lib/IosTextOutline";
 
-const PostActionsPresenter = props => {
-  const { likeCount } = props;
+const PostActionsPresenter = ({ likeCount }) => {
   return (
     <div>
       <div>
@@ -16,17 +15,13 @@ const PostActionsPresenter = props => {
           <IosTextOutline fontSize="28px" color="black" />
         </span>
       </div>
-      <span>{likeCount} 좋아요</span>
+      <span>{`${likeCount} 좋아요`} </span>
     </div>
   );
 };
 
 PostActionsPresenter.propTypes = {
-  likeCount: PropTypes.number.isRequired
-};
-
-PostActionsPresenter.contextTypes = {
-  t: PropTypes.func.isRequired
+  likeCount: PropTypes.number
 };
 
 export default PostActionsPresenter;
