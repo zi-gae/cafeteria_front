@@ -13,7 +13,7 @@
   @include breakpoint(mobile) {
     justify-content: center;
   }
-  .colum {
+  .column {
     margin-bottom: 15px;
     @include breakpoint(mobile) {
       margin-bottom: 0;
