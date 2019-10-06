@@ -9,6 +9,7 @@ const List = styled.ul``;
 const Item = styled.li``;
 const Username = styled.div``;
 const Message = styled.span``;
+const OnCommentBox = styled.div``;
 
 const PostCommentsPresenter = ({ comments }) => {
   return (
@@ -16,10 +17,12 @@ const PostCommentsPresenter = ({ comments }) => {
       <List styles={styles.list}>
         {comments.map(comment => (
           <Comment
+            comments={comments}
             username={comment.creator.username}
-            comment={comment.message}
+            message={comment.message}
             referComment={comment.referComment}
             key={comment.id}
+            id={comment.id}
             time={comment.natural_time}
           />
         ))}
@@ -28,17 +31,52 @@ const PostCommentsPresenter = ({ comments }) => {
   );
 };
 
-const Comment = ({ username, comment, referComment, time }) => {
+const Comment = ({ comments, username, message, id, referComment, time }) => {
   return (
     <Item className={styles.comment}>
-      <Username className={styles.username}>{username}</Username>
-      <Message className={styles.message}>
-        {referComment !== null
-          ? `대댓글 id: ${referComment} ${comment}`
-          : comment}
-        <TimeStamp format="comment" time={time}></TimeStamp>
-      </Message>
+      {referComment === null && (
+        <>
+          <CommentForm
+            username={username}
+            message={message}
+            time={time}
+          ></CommentForm>
+          <OnCommentBox className={styles.onComment}>
+            <CommentOnComment parentCommentId={id} comments={comments} />
+          </OnCommentBox>
+        </>
+      )}
     </Item>
+  );
+};
+
+const CommentOnComment = ({ comments, parentCommentId }) => {
+  return comments
+    .filter(comment => comment.referComment !== null)
+    .map(comment => {
+      if (parentCommentId === comment.referComment) {
+        return (
+          <CommentForm
+            className={styles.onComment}
+            key={comment.id}
+            message={comment.message}
+            username={comment.creator.username}
+            time={comment.natural_time}
+          ></CommentForm>
+        );
+      } else {
+        return null;
+      }
+    });
+};
+
+const CommentForm = ({ message, username, time }) => {
+  return (
+    <>
+      <Username className={styles.username}>{username}</Username>
+      <Message className={styles.message}>{message}</Message>
+      <TimeStamp time={time}></TimeStamp>
+    </>
   );
 };
 
