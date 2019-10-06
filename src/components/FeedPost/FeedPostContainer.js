@@ -10,7 +10,9 @@ const FeedPostContainer = ({
   comments,
   naturalTime,
   updated_at,
-  commentCount
+  commentCount,
+  isLiked,
+  id
 }) => {
   return (
     <FeedPostPresenter
@@ -23,6 +25,8 @@ const FeedPostContainer = ({
       naturalTime={naturalTime}
       updated_at={updated_at}
       commentCount={commentCount}
+      isLiked={isLiked}
+      id={id}
     ></FeedPostPresenter>
   );
 };

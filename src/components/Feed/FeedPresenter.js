@@ -17,6 +17,7 @@ const FeedPresenter = ({ loading, feed }) => {
       {feed.map(post => (
         <FeedPost
           key={post.id}
+          id={post.id}
           title={post.title}
           content={post.content}
           creator={post.creator}
@@ -26,6 +27,7 @@ const FeedPresenter = ({ loading, feed }) => {
           naturalTime={post.natural_time}
           updated_at={post.updated_at}
           commentCount={post.comment_count}
+          isLiked={post.is_liked}
         ></FeedPost>
       ))}
     </Container>

@@ -26,8 +26,10 @@ const FeedPostPresenter = ({
   likeCount,
   comments,
   naturalTime,
+  isLiked,
   updated_at,
-  commentCount
+  commentCount,
+  id
 }) => {
   return (
     <Container className={styles.feedPost}>
@@ -52,7 +54,12 @@ const FeedPostPresenter = ({
         </ImgBox>
       </PostBox>
       <Action className={styles.meta}>
-        <PostActions likeCount={likeCount} commentCount={commentCount} />
+        <PostActions
+          likeCount={likeCount}
+          commentCount={commentCount}
+          isLiked={isLiked}
+          postId={id}
+        />
         <PostComments comments={comments}></PostComments>
         <CommentBox></CommentBox>
       </Action>
