@@ -10,22 +10,74 @@ const Item = styled.li``;
 const Username = styled.div``;
 const Message = styled.span``;
 const OnCommentBox = styled.div``;
+const AddComment = styled.div``;
 
-const PostCommentsPresenter = ({ comments }) => {
+const PostCommentsPresenter = ({
+  comments,
+  commentOpen,
+  handleCommentOpen
+}) => {
+  console.log("comments", comments);
+
   return (
     <Container className={styles.comments}>
       <List styles={styles.list}>
-        {comments.map(comment => (
-          <Comment
-            comments={comments}
-            username={comment.creator.username}
-            message={comment.message}
-            referComment={comment.referComment}
-            key={comment.id}
-            id={comment.id}
-            time={comment.natural_time}
-          />
-        ))}
+        {comments.length > 3 ? (
+          !commentOpen ? (
+            <AddComment
+              className={styles.commentOpen}
+              onClick={handleCommentOpen}
+            >
+              댓글 모두 보기
+            </AddComment>
+          ) : (
+            <AddComment
+              className={styles.commentOpen}
+              onClick={handleCommentOpen}
+            >
+              댓글 접기
+            </AddComment>
+          )
+        ) : (
+          comments.map(comment => (
+            <Comment
+              comments={comments}
+              username={comment.creator.username}
+              message={comment.message}
+              referComment={comment.referComment}
+              key={comment.id}
+              id={comment.id}
+              time={comment.natural_time}
+            />
+          ))
+        )}
+        {!commentOpen
+          ? comments.length > 3
+            ? comments
+                .filter((_, index, comment) => index < 1)
+                .map(comment => (
+                  <Comment
+                    comments={comments}
+                    username={comment.creator.username}
+                    message={comment.message}
+                    referComment={comment.referComment}
+                    key={comment.id}
+                    id={comment.id}
+                    time={comment.natural_time}
+                  />
+                ))
+            : null
+          : comments.map(comment => (
+              <Comment
+                comments={comments}
+                username={comment.creator.username}
+                message={comment.message}
+                referComment={comment.referComment}
+                key={comment.id}
+                id={comment.id}
+                time={comment.natural_time}
+              />
+            ))}
       </List>
     </Container>
   );
@@ -85,7 +137,9 @@ PostCommentsPresenter.propTypes = {
         username: PropTypes.string.isRequired
       }).isRequired
     })
-  ).isRequired
+  ).isRequired,
+  commentOpen: PropTypes.bool.isRequired,
+  handleCommentOpen: PropTypes.func.isRequired
 };
 
 export default PostCommentsPresenter;

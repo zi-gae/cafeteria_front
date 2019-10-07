@@ -1,8 +1,33 @@
-import React from "react";
+import React, { Component } from "react";
 import PostCommentsPresenter from "./PostCommentsPresenter";
 
-const PostCommentsCotainer = ({ comments }) => {
-  return <PostCommentsPresenter comments={comments} />;
-};
+class PostCommentsCotainer extends Component {
+  constructor() {
+    super();
+    this.state = {
+      commentOpen: false
+    };
+  }
+
+  _handleCommentOpen = () => {
+    console.log(this.state.commentOpen);
+
+    this.setState({
+      commentOpen: !this.state.commentOpen
+    });
+  };
+  render() {
+    const { comments } = this.props;
+    const { commentOpen } = this.state;
+    const { _handleCommentOpen } = this;
+    return (
+      <PostCommentsPresenter
+        comments={comments}
+        commentOpen={commentOpen}
+        handleCommentOpen={_handleCommentOpen}
+      />
+    );
+  }
+}
 
 export default PostCommentsCotainer;
