@@ -6,6 +6,7 @@ import styled from "styled-components";
 import FeedPost from "components/FeedPost";
 
 const Container = styled.div``;
+// const Term = styled.div``;
 
 const FeedPresenter = ({ loading, feed }) => {
   return loading ? (

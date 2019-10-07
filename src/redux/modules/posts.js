@@ -8,6 +8,7 @@ const SET_FEED = "SET_FEED";
 const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 const ADD_COMMENT = "ADD_COMENT";
+const SET_POST_LIST = "SET_POST_LIST";
 
 // action creatorsa
 
@@ -37,6 +38,13 @@ const addComment = (postId, comment) => {
     type: ADD_COMMENT,
     postId,
     comment
+  };
+};
+
+const setPostList = postList => {
+  return {
+    type: SET_POST_LIST,
+    postList
   };
 };
 
@@ -134,6 +142,29 @@ const commentPost = (postId, message) => {
   };
 };
 
+const searchByTerm = searchTerm => {
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    console.log("searchByTerm", searchTerm);
+    const postList = await searchPosts(token, searchTerm);
+    if (postList === 401) {
+      dispatch(userActions.logout());
+    }
+    dispatch(setPostList(postList));
+  };
+};
+const searchPosts = (token, searchTerm) => {
+  return axios({
+    url: `/posts/title_search/?title=${searchTerm}`,
+    method: "get",
+    headers: {
+      Authorization: `JWT ${token}`
+    }
+  }).then(res => res.data);
+};
+
 // initial state
 
 const initialState = {};
@@ -150,6 +181,9 @@ const reducer = (state = initialState, action) => {
       return applyUnLikePost(state, action);
     case ADD_COMMENT:
       return applyAddComment(state, action);
+    case SET_POST_LIST:
+      return applySetPostList(state, action);
+
     default:
       return state;
   }
@@ -214,13 +248,22 @@ const applyAddComment = (state, action) => {
   });
   return { ...state, feed: updateFeed };
 };
+
+const applySetPostList = (state, action) => {
+  const { postList } = action;
+  return {
+    ...state,
+    postList
+  };
+};
 // exports
 
 const actionCreators = {
   getFeed,
   setLikePost,
   setUnLikePost,
-  commentPost
+  commentPost,
+  searchByTerm
 };
 
 export { actionCreators };

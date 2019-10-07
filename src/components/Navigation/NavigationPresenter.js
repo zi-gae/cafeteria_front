@@ -5,6 +5,7 @@ import IosPersonOutline from "react-ionicons/lib/IosPersonOutline";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const Container = styled.div``;
 const Inner = styled.div``;
@@ -13,8 +14,9 @@ const ComboBox = styled.select``;
 const Option = styled.option``;
 const Search = styled.input``;
 const NavIcon = styled.div``;
+const Form = styled.form``;
 
-const NavigationPresenter = (props, context) => {
+const NavigationPresenter = ({ value, onInputChange, onSubmit }) => {
   return (
     <Container className={styles.navigation}>
       <Inner className={styles.inner}>
@@ -34,11 +36,15 @@ const NavigationPresenter = (props, context) => {
             <Option value="major">전공게시판</Option>
             <Option value="used">중고장터</Option>
           </ComboBox>
-          <Search
-            type="text"
-            className={styles.searchInput}
-            placeholder="검색"
-          />
+          <Form onSubmit={onSubmit}>
+            <Search
+              type="text"
+              className={styles.searchInput}
+              placeholder="검색"
+              onChange={onInputChange}
+              value={value}
+            />
+          </Form>
         </Column>
         <Column className={styles.column}>
           <NavIcon className={styles.navIcon}>
@@ -60,6 +66,10 @@ const NavigationPresenter = (props, context) => {
   );
 };
 
-NavigationPresenter.contextTypes = {};
+NavigationPresenter.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+  oninputChange: PropTypes.func.isRequired,
+  term: PropTypes.string.isRequired
+};
 
 export default NavigationPresenter;

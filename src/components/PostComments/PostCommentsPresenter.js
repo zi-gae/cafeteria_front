@@ -17,8 +17,6 @@ const PostCommentsPresenter = ({
   commentOpen,
   handleCommentOpen
 }) => {
-  console.log("comments", comments);
-
   return (
     <Container className={styles.comments}>
       <List styles={styles.list}>

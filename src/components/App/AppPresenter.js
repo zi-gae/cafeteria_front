@@ -6,6 +6,7 @@ import React from "react";
 import Auth from "components/Auth";
 import Navigation from "../Navigation";
 import Feed from "components/Feed";
+import Search from "components/Search";
 
 const AppPresenter = props => {
   const { isLoggedIn } = props;
@@ -26,6 +27,7 @@ const PrivateRouter = props => (
   <>
     <Route exact path="/" component={Feed} />
     <Route path="/explore" render={() => "explore !"} />
+    <Route path="/search/:searchTerm" component={Search} />
   </>
 );
 

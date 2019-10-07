@@ -10,8 +10,6 @@ class PostCommentsCotainer extends Component {
   }
 
   _handleCommentOpen = () => {
-    console.log(this.state.commentOpen);
-
     this.setState({
       commentOpen: !this.state.commentOpen
     });
