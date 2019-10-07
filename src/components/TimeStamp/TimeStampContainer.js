@@ -2,7 +2,10 @@ import React from "react";
 import TimeStampPresenter from "./TimeStampPresenter";
 
 const TimeStampContainer = ({ time }) => {
-  time = time.replace("ago", "이전");
+  time = time.replace("ago", "전");
+  time = time.replace("minutes", "분");
+  time = time.replace("a minute", "1분");
+  time = time.replace("now", "지금");
   return <TimeStampPresenter time={time}></TimeStampPresenter>;
 };
 
