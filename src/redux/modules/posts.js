@@ -7,6 +7,7 @@ import { actionCreators as userActions } from "redux/modules/user";
 const SET_FEED = "SET_FEED";
 const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
+const ADD_COMMENT = "ADD_COMENT";
 
 // action creatorsa
 
@@ -28,6 +29,14 @@ const unLikePost = postId => {
   return {
     type: UNLIKE_POST,
     postId
+  };
+};
+
+const addComment = (postId, comment) => {
+  return {
+    type: ADD_COMMENT,
+    postId,
+    comment
   };
 };
 
@@ -68,7 +77,6 @@ const setLikePost = postId => {
         Authorization: `JWT ${token}`
       }
     });
-    console.log("setlike res: ", res);
 
     if (res.status === 401) {
       dispatch(userActions.logout());
@@ -91,12 +99,37 @@ const setUnLikePost = postId => {
         Authorization: `JWT ${token}`
       }
     });
-    console.log("setunlike res: ", res);
 
     if (res.status === 401) {
       dispatch(userActions.logout());
     } else if (res.status === 304) {
       dispatch(likePost(postId));
+    }
+  };
+};
+
+const commentPost = (postId, message) => {
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    const res = await axios({
+      url: `/posts/${postId}/comments/`,
+      method: "post",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      data: {
+        message
+      }
+    });
+    if (res.status === 401) {
+      dispatch(userActions.logout());
+    }
+    const { data } = res;
+    if (data.message) {
+      dispatch(addComment(postId, data));
     }
   };
 };
@@ -115,6 +148,8 @@ const reducer = (state = initialState, action) => {
       return applyLikePost(state, action);
     case UNLIKE_POST:
       return applyUnLikePost(state, action);
+    case ADD_COMMENT:
+      return applyAddComment(state, action);
     default:
       return state;
   }
@@ -133,8 +168,6 @@ const applySetFeed = (state, action) => {
 const applyLikePost = (state, action) => {
   const { postId } = action;
   const { feed } = state;
-  console.log("like: ", postId);
-
   const updateFeed = feed.map(post => {
     if (post.id === postId) {
       return {
@@ -148,11 +181,10 @@ const applyLikePost = (state, action) => {
   });
   return { ...state, feed: updateFeed };
 };
+
 const applyUnLikePost = (state, action) => {
   const { postId } = action;
   const { feed } = state;
-  console.log("unlike: ", postId);
-
   const updateFeed = feed.map(post => {
     if (post.id === postId) {
       return {
@@ -166,12 +198,29 @@ const applyUnLikePost = (state, action) => {
   });
   return { ...state, feed: updateFeed };
 };
+
+const applyAddComment = (state, action) => {
+  const { postId, comment } = action;
+  const { feed } = state;
+  const updateFeed = feed.map(post => {
+    if (post.id === postId) {
+      return {
+        ...post,
+        comments: [...post.comments, comment]
+      };
+    } else {
+      return post;
+    }
+  });
+  return { ...state, feed: updateFeed };
+};
 // exports
 
 const actionCreators = {
   getFeed,
   setLikePost,
-  setUnLikePost
+  setUnLikePost,
+  commentPost
 };
 
 export { actionCreators };

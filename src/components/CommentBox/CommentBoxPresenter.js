@@ -27,7 +27,8 @@ const CommentBoxPresenter = ({
 CommentBoxPresenter.propTypes = {
   comment: PropTypes.string.isRequired,
   handleInputChange: PropTypes.func.isRequired,
-  handleKeyPress: PropTypes.func.isRequired
+  handleKeyPress: PropTypes.func.isRequired,
+  postId: PropTypes.number.isRequired
 };
 
 export default CommentBoxPresenter;

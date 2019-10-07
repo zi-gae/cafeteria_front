@@ -18,19 +18,27 @@ class CommentBoxContainer extends Component {
   };
   _handleKeyPress = e => {
     const { key } = e;
+    const { comment } = this.state;
+    const { submitComment } = this.props;
     if (key === "Enter") {
-      e.preventDeault();
+      e.preventDefault();
+      submitComment(comment);
+      this.setState({
+        comment: ""
+      });
     }
   };
   render() {
     const { comment } = this.state;
     const { _handleInputChange, _handleKeyPress } = this;
+    const { postId } = this.props;
     return (
       <CommentBoxPresenter
         handleInputChange={_handleInputChange}
         handleKeyPress={_handleKeyPress}
         comment={comment}
-      ></CommentBoxPresenter>
+        postId={postId}
+      />
     );
   }
 }

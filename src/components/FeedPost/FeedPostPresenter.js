@@ -61,7 +61,7 @@ const FeedPostPresenter = ({
           postId={id}
         />
         <PostComments comments={comments}></PostComments>
-        <CommentBox></CommentBox>
+        <CommentBox postId={id}></CommentBox>
       </Action>
     </Container>
   );
