@@ -36,14 +36,8 @@ const Comment = ({ comments, username, message, id, referComment, time }) => {
     <Item className={styles.comment}>
       {referComment === null && (
         <>
-          <CommentForm
-            username={username}
-            message={message}
-            time={time}
-          ></CommentForm>
-          <OnCommentBox className={styles.onComment}>
-            <CommentOnComment parentCommentId={id} comments={comments} />
-          </OnCommentBox>
+          <CommentForm username={username} message={message} time={time} />
+          <CommentOnComment parentCommentId={id} comments={comments} />
         </>
       )}
     </Item>
@@ -56,13 +50,14 @@ const CommentOnComment = ({ comments, parentCommentId }) => {
     .map(comment => {
       if (parentCommentId === comment.referComment) {
         return (
-          <CommentForm
-            className={styles.onComment}
-            key={comment.id}
-            message={comment.message}
-            username={comment.creator.username}
-            time={comment.natural_time}
-          ></CommentForm>
+          <OnCommentBox className={styles.onComment} key={comment.id}>
+            <CommentForm
+              className={styles.onComment}
+              message={comment.message}
+              username={comment.creator.username}
+              time={comment.natural_time}
+            />
+          </OnCommentBox>
         );
       } else {
         return null;
