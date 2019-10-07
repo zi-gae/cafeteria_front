@@ -2,7 +2,6 @@ import React from "react";
 import IosAlarmOutline from "react-ionicons/lib/IosAlarmOutline";
 import IosExitOutline from "react-ionicons/lib/IosExitOutline";
 import IosPersonOutline from "react-ionicons/lib/IosPersonOutline";
-// import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
 import styled from "styled-components";
