@@ -1,0 +1,104 @@
+.container {
+  @include boxBorder(yes);
+  width: 100%;
+  max-width: $max-card-width;
+  margin-bottom: 10px;
+  @include breakpoint(mobile) {
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 30px;
+  }
+}
+
+.commentBox {
+  padding: 15px;
+  background-color: $light-grey;
+  @include breakpoint("phone") {
+    display: none;
+  }
+  .content {
+    border: 0;
+    background-color: $light-grey;
+    color: #aaaaaa;
+    height: 20px;
+    resize: none;
+    width: 100%;
+    font-size: $normal-font-size;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $dark-grey;
+    }
+  }
+  .textarea {
+    background-color: $light-grey;
+    border: 0;
+    color: #aaaaaa;
+    height: 20px;
+    resize: none;
+    width: 100%;
+    font-size: $normal-font-size;
+    &:focus {
+      outline: none;
+    }
+    &::placeholder {
+      color: $dark-grey;
+    }
+  }
+}
+.postContent {
+  .textareaBox {
+    padding: 15px;
+    .title {
+      border: 0;
+      padding-bottom: 15px;
+      border-bottom: solid 1px #e3e3e3;
+      width: 100%;
+      height: 20px;
+      color: #292929;
+      resize: none;
+      font-size: 20px;
+      font-weight: bold;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: $dark-grey;
+      }
+    }
+    .textarea {
+      border: 0;
+      color: #aaaaaa;
+      width: 100%;
+      resize: none;
+      font-size: $normal-font-size;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: $dark-grey;
+      }
+    }
+  }
+  .write {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .icon {
+    border-top: solid 1px #e3e3e3;
+    display: flex;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+
+    .write {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      font-size: $normal-font-size;
+      color: $dark-grey;
+    }
+  }
+}
