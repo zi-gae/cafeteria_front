@@ -6,8 +6,15 @@ const mapStateToProps = (state, ownProps) => {
   const {
     posts: { postList }
   } = state;
+  const {
+    match: {
+      params: { searchTerm }
+    }
+  } = ownProps;
+
   return {
-    postList
+    postList,
+    searchTerm
   };
 };
 

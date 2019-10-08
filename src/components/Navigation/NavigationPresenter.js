@@ -68,8 +68,8 @@ const NavigationPresenter = ({ value, onInputChange, onSubmit }) => {
 
 NavigationPresenter.propTypes = {
   onSubmit: PropTypes.func.isRequired,
-  oninputChange: PropTypes.func.isRequired,
-  term: PropTypes.string.isRequired
+  onInputChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired
 };
 
 export default NavigationPresenter;

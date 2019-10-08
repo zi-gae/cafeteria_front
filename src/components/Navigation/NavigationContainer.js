@@ -9,16 +9,7 @@ class NavigationContainer extends Component {
   static propTypes = {
     goToSearch: PropTypes.func.isRequired
   };
-  render() {
-    const { term } = this.state;
-    return (
-      <NavigationPresenter
-        onSubmit={this._onSubmit}
-        onInputChange={this._onInputChange}
-        value={term}
-      />
-    );
-  }
+
   _onInputChange = event => {
     const {
       target: { value }
@@ -36,6 +27,16 @@ class NavigationContainer extends Component {
       term: ""
     });
   };
+  render() {
+    const { term } = this.state;
+    return (
+      <NavigationPresenter
+        onSubmit={this._onSubmit}
+        onInputChange={this._onInputChange}
+        value={term}
+      />
+    );
+  }
 }
 
 export default NavigationContainer;

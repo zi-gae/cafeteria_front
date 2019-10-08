@@ -147,7 +147,6 @@ const searchByTerm = searchTerm => {
     const {
       user: { token }
     } = getState();
-    console.log("searchByTerm", searchTerm);
     const postList = await searchPosts(token, searchTerm);
     if (postList === 401) {
       dispatch(userActions.logout());
@@ -236,6 +235,7 @@ const applyUnLikePost = (state, action) => {
 const applyAddComment = (state, action) => {
   const { postId, comment } = action;
   const { feed } = state;
+
   const updateFeed = feed.map(post => {
     if (post.id === postId) {
       return {

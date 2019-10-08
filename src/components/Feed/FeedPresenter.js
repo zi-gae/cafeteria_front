@@ -4,17 +4,25 @@ import styles from "./styles.scss";
 import Loading from "components/Loading";
 import styled from "styled-components";
 import FeedPost from "components/FeedPost";
+import PostInputBox from "components/PostInputBox";
 
 const Container = styled.div``;
-// const Term = styled.div``;
+const Term = styled.div``;
 
-const FeedPresenter = ({ loading, feed }) => {
+const FeedPresenter = ({ loading, feed, searchTerm }) => {
   return loading ? (
     <Container className={styles.feed}>
-      <Loading></Loading>
+      <Loading />
     </Container>
   ) : (
     <Container className={styles.feed}>
+      <PostInputBox />
+      {searchTerm ? (
+        <Term
+          className={styles.term}
+        >{`"${searchTerm}"에 대한 검색 결과`}</Term>
+      ) : null}
+
       {feed.map(post => (
         <FeedPost
           key={post.id}

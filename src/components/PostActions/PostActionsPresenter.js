@@ -16,8 +16,6 @@ const PostActionsPresenter = ({
   handleHeartClick,
   isLiked
 }) => {
-  console.log();
-
   return (
     <Container className={styles.actions}>
       <IconContainer className={styles.icons}>
@@ -25,8 +23,8 @@ const PostActionsPresenter = ({
           {isLiked ? (
             <IosHeart fontSize="20px" color="#73bb2b" />
           ) : (
-            <IosHeartOutline fontSize="20px" color="black" />
-          )}{" "}
+            <IosHeartOutline fontSize="20px" color="#73bb2b" />
+          )}
           {likeCount}
         </Icon>
 
