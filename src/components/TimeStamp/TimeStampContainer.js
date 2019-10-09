@@ -10,6 +10,7 @@ const TimeStampContainer = ({ time }) => {
   time = time.replace("hour", "시간");
   time = time.replace("an", "한");
   time = time.replace("seconds", "초");
+  time = time.replace("a seconds", "1초");
   return <TimeStampPresenter time={time}></TimeStampPresenter>;
 };
 
