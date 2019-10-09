@@ -7,6 +7,7 @@ import Auth from "components/Auth";
 import Navigation from "../Navigation";
 import Feed from "components/Feed";
 import Search from "components/Search";
+import Dormitory from "components/Dormitory";
 
 const AppPresenter = props => {
   const { isLoggedIn } = props;
@@ -26,7 +27,7 @@ const AppPresenter = props => {
 const PrivateRouter = props => (
   <>
     <Route exact path="/" component={Feed} />
-    <Route path="/explore" render={() => "explore !"} />
+    <Route path="/cwaler/dormitory" component={Dormitory} />
     <Route path="/search/:searchTerm" component={Search} />
   </>
 );
