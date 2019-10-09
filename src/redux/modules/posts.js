@@ -9,7 +9,7 @@ const LIKE_POST = "LIKE_POST";
 const UNLIKE_POST = "UNLIKE_POST";
 const ADD_COMMENT = "ADD_COMENT";
 const SET_POST_LIST = "SET_POST_LIST";
-
+const ADD_POST = "ADD_POST";
 // action creatorsa
 
 const setFeed = feed => {
@@ -45,6 +45,13 @@ const setPostList = postList => {
   return {
     type: SET_POST_LIST,
     postList
+  };
+};
+
+const addPost = post => {
+  return {
+    type: ADD_POST,
+    post
   };
 };
 
@@ -117,6 +124,7 @@ const setUnLikePost = postId => {
 };
 
 const commentPost = (postId, message) => {
+  console.log("message:", message);
   return async (dispatch, getState) => {
     const {
       user: { token }
@@ -132,6 +140,7 @@ const commentPost = (postId, message) => {
         message
       }
     });
+
     if (res.status === 401) {
       dispatch(userActions.logout());
     }
@@ -164,6 +173,37 @@ const searchPosts = (token, searchTerm) => {
   }).then(res => res.data);
 };
 
+const createPost = (title, content, file, anonymous) => {
+  let formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("anonymous", anonymous);
+  if (file !== null) {
+    formData.append("file", file, file.name);
+  }
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    const res = await axios({
+      url: `/posts/`,
+      method: "post",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-type": "multipart/form-data"
+      },
+      data: formData
+    });
+
+    const { data } = res;
+    if (res.status === 401) {
+      dispatch(userActions.logout());
+    } else {
+      dispatch(addPost(data));
+    }
+  };
+};
+
 // initial state
 
 const initialState = {};
@@ -182,6 +222,8 @@ const reducer = (state = initialState, action) => {
       return applyAddComment(state, action);
     case SET_POST_LIST:
       return applySetPostList(state, action);
+    case ADD_POST:
+      return applyAddPost(state, action);
 
     default:
       return state;
@@ -238,6 +280,8 @@ const applyAddComment = (state, action) => {
 
   const updateFeed = feed.map(post => {
     if (post.id === postId) {
+      console.log(comment);
+
       return {
         ...post,
         comments: [...post.comments, comment]
@@ -256,6 +300,16 @@ const applySetPostList = (state, action) => {
     postList
   };
 };
+
+const applyAddPost = (state, action) => {
+  console.log("state:", state);
+  const { feed } = state;
+  console.log("action:", action);
+
+  return {
+    feed
+  };
+};
 // exports
 
 const actionCreators = {
@@ -263,7 +317,8 @@ const actionCreators = {
   setLikePost,
   setUnLikePost,
   commentPost,
-  searchByTerm
+  searchByTerm,
+  createPost
 };
 
 export { actionCreators };
