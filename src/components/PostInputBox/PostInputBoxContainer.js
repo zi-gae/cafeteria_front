@@ -54,6 +54,13 @@ class PostInputBoxContainer extends Component {
   _handleWritePost = e => {
     const { title, content, file, anonymous } = this.state;
     const { createPostClick } = this.props;
+    this.setState({
+      inputPost: false,
+      anonymous: true,
+      title: "",
+      content: "",
+      file: null
+    });
     createPostClick(title, content, file, anonymous);
     e.preventDefault();
   };
