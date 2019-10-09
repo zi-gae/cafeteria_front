@@ -1,0 +1,82 @@
+.postContent {
+  .textareaBox {
+    padding: 15px;
+    .title {
+      border: 0;
+      padding-bottom: 15px;
+      border-bottom: solid 1px #e3e3e3;
+      width: 100%;
+      height: 20px;
+      color: #292929;
+      resize: none;
+      font-size: 20px;
+      font-weight: bold;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: $dark-grey;
+      }
+    }
+    .textarea {
+      border: 0;
+      color: #aaaaaa;
+      width: 100%;
+      resize: none;
+      font-size: $normal-font-size;
+      &:focus {
+        outline: none;
+      }
+      &::placeholder {
+        color: $dark-grey;
+      }
+    }
+  }
+  .write {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
+  }
+  .icon {
+    border-top: solid 1px #e3e3e3;
+    display: flex;
+    .pencil {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      width: 50px;
+      background-color: $tu-color-first;
+      cursor: pointer;
+    }
+    .write {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+      padding-top: 7px;
+      padding-bottom: 5px;
+      font-size: $normal-font-size;
+      color: $dark-grey;
+    }
+  }
+}
+
+.filebox label {
+  display: inline-flex;
+  padding: 10px 10px;
+  margin-top: 0.7em;
+  margin-left: 10px;
+  cursor: pointer;
+  background: url(../../images/attach.jpg);
+  background-size: cover;
+  border-bottom-color: #e2e2e2;
+}
+.filebox input[type="file"] {
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
