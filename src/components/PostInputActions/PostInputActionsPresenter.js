@@ -4,6 +4,7 @@ import Textarea from "react-textarea-autosize";
 import styles from "./styles.scss";
 import { MdCheckBoxOutlineBlank, MdCheckBox } from "react-icons/md";
 import { TiPencil } from "react-icons/ti";
+import PropTypes from "prop-types";
 
 const PostContent = styled.div``;
 const TextareaBox = styled.div``;
@@ -78,6 +79,15 @@ const PostInputActionsPresenter = ({
       </div>
     </PostContent>
   );
+};
+
+PostInputActionsPresenter.propTypes = {
+  handleWriteState: PropTypes.func.isRequired,
+  handleWritePost: PropTypes.func.isRequired,
+  stateConditionHandler: PropTypes.func.isRequired,
+  fileUploadHandler: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 };
 
 export default PostInputActionsPresenter;

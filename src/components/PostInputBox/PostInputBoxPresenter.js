@@ -50,7 +50,9 @@ PostInputBoxPresenter.propTypes = {
   handleWriteState: PropTypes.func.isRequired,
   inputPost: PropTypes.bool.isRequired,
   anonymous: PropTypes.bool.isRequired,
-  createPostClick: PropTypes.func
+  createPostClick: PropTypes.func,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.string.isRequired
 };
 
 export default PostInputBoxPresenter;

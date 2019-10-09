@@ -196,7 +196,6 @@ const createPost = (title, content, file, anonymous) => {
       if (res.status === 401) {
         dispatch(userActions.logout());
       } else {
-        console.log("createPost", res.data);
         dispatch(addPost(res.data));
       }
     });
