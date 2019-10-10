@@ -5,9 +5,10 @@ const LOGOUT = "LOGOUT";
 const SAVE_TOKEN = "SAVE_TOKEN";
 // action creator
 
-const saveToken = token => {
+const saveToken = (username, token) => {
   return {
     type: SAVE_TOKEN,
+    username,
     token
   };
 };
@@ -33,11 +34,13 @@ const usernameLogin = (username, password) => {
       }
     });
     const {
-      data: { token }
+      data: { token, user }
     } = res;
+    console.log("username", user.username);
+
     try {
       if (token) {
-        dispatch(saveToken(token));
+        dispatch(saveToken(user.username, token));
       }
     } catch (err) {
       console.log(err);
@@ -78,7 +81,8 @@ const createAccount = (username, password, stdntnum, nickname, email) => {
 //initial statment
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 };
 
 // reducer
@@ -95,12 +99,14 @@ const reducer = (state = initialState, action) => {
 
 // reducer functions
 const applySetToken = (state, action) => {
-  const { token } = action;
+  const { token, username } = action;
   localStorage.setItem("jwt", token);
+  localStorage.setItem("username", username);
   return {
     ...state,
     isLoggedIn: true,
-    token: token
+    token,
+    username
   };
 };
 

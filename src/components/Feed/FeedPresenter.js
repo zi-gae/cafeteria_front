@@ -37,7 +37,8 @@ const FeedPresenter = ({ loading, feed, searchTerm }) => {
           updated_at={post.updated_at}
           commentCount={post.comment_count}
           isLiked={post.is_liked}
-        ></FeedPost>
+          anonymous={post.anonymous}
+        />
       ))}
     </Container>
   );

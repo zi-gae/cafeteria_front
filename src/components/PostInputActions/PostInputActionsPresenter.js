@@ -8,6 +8,8 @@ import PropTypes from "prop-types";
 
 const PostContent = styled.div``;
 const TextareaBox = styled.div``;
+const ImgBox = styled.div``;
+const Img = styled.img``;
 
 const PostInputActionsPresenter = ({
   anonymous,
@@ -16,7 +18,8 @@ const PostInputActionsPresenter = ({
   title,
   content,
   stateConditionHandler,
-  fileUploadHandler
+  fileUploadHandler,
+  file
 }) => {
   return (
     <PostContent className={styles.postContent}>
@@ -40,14 +43,26 @@ const PostInputActionsPresenter = ({
             onChange={handleWriteState}
             name="content"
           />
+          <ImgBox className={styles.imageBox}>
+            {file ? (
+              <Img
+                className={styles.postImg}
+                src={file}
+                id="preview"
+                alt={content}
+              />
+            ) : (
+              <Img className={styles.postImg} id="preview" />
+            )}
+          </ImgBox>
         </TextareaBox>
       </div>
       <div className={styles.icon}>
         <span className={styles.filebox}>
-          <label htmlFor="ex_file" />
+          <label htmlFor="uploadFile" />
           <input
             type="file"
-            id="ex_file"
+            id="uploadFile"
             onChange={fileUploadHandler}
             multiple
             name="file"

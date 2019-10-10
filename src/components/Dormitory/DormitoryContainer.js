@@ -85,8 +85,6 @@ class DormitoryContainer extends Component {
   };
 
   render() {
-    const { dormitoryOutState, location } = this.props;
-
     const {
       collegeStudentId,
       collegeStudentPwd,

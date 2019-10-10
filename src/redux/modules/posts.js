@@ -10,6 +10,8 @@ const UNLIKE_POST = "UNLIKE_POST";
 const ADD_COMMENT = "ADD_COMENT";
 const SET_POST_LIST = "SET_POST_LIST";
 const ADD_POST = "ADD_POST";
+const UPDATE_POST = "UPDATE_POST";
+const DELETE_POST = "DELETE_POST";
 // action creatorsa
 
 const setFeed = feed => {
@@ -55,6 +57,20 @@ const addPost = post => {
   };
 };
 
+const updatePost = (postId, post) => {
+  return {
+    type: UPDATE_POST,
+    postId,
+    post
+  };
+};
+
+const requestDeletePost = postId => {
+  return {
+    type: DELETE_POST,
+    postId
+  };
+};
 // api actions
 
 const getFeed = () => {
@@ -162,6 +178,7 @@ const searchByTerm = searchTerm => {
     dispatch(setPostList(postList));
   };
 };
+
 const searchPosts = (token, searchTerm) => {
   return axios({
     url: `/posts/title_search/?title=${searchTerm}`,
@@ -202,6 +219,56 @@ const createPost = (title, content, file, anonymous) => {
   };
 };
 
+const putPost = (postId, title, content, file, anonymous) => {
+  let formData = new FormData();
+  formData.append("title", title);
+  formData.append("content", content);
+  formData.append("anonymous", anonymous);
+  if (file !== null) {
+    formData.append("file", file, file.name);
+  }
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    await axios({
+      url: `/posts/${postId}/`,
+      method: "put",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-type": "multipart/form-data"
+      },
+      data: formData
+    }).then(res => {
+      if (res.status === 401) {
+        dispatch(userActions.logout());
+      } else {
+        dispatch(updatePost(postId, res.data));
+      }
+    });
+  };
+};
+
+const deletePost = postId => {
+  return (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    const res = axios({
+      url: `/posts/${postId}/`,
+      method: "delete",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    });
+    if (res.status === 401) {
+      dispatch(userActions.logout());
+    } else {
+      dispatch(requestDeletePost(postId));
+    }
+  };
+};
+
 // initial state
 
 const initialState = {};
@@ -222,6 +289,10 @@ const reducer = (state = initialState, action) => {
       return applySetPostList(state, action);
     case ADD_POST:
       return applyAddPost(state, action);
+    case UPDATE_POST:
+      return applyUpdatePost(state, action);
+    case DELETE_POST:
+      return applyDeletePost(state, action);
 
     default:
       return state;
@@ -304,6 +375,36 @@ const applyAddPost = (state, action) => {
     feed: [post, ...feed]
   };
 };
+
+const applyUpdatePost = (state, action) => {
+  const { feed } = state;
+  const { postId } = action;
+  const updateFeed = feed.map(post => {
+    if (post.id === postId) {
+      return {
+        ...post,
+        ...action.post
+      };
+    } else {
+      return post;
+    }
+  });
+
+  return { ...state, feed: updateFeed };
+};
+
+const applyDeletePost = (state, action) => {
+  const { feed } = state;
+  const { postId } = action;
+
+  const updateFeed = feed.filter(post => {
+    if (post.id !== postId) {
+      return post;
+    }
+  });
+
+  return { ...state, feed: updateFeed };
+};
 // exports
 
 const actionCreators = {
@@ -312,7 +413,9 @@ const actionCreators = {
   setUnLikePost,
   commentPost,
   searchByTerm,
-  createPost
+  createPost,
+  putPost,
+  deletePost
 };
 
 export { actionCreators };

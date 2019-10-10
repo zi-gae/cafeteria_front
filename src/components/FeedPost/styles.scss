@@ -16,18 +16,37 @@
     padding-top: 15px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 10px;
-    .image {
-      width: 30px;
-      border-radius: 50%;
-      margin-right: 15px;
-      margin-bottom: 10px;
-    }
+
     .header-column {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
+      .image {
+        width: 40px;
+        height: 40px;
+        border-radius: 40%;
+        margin-right: 15px;
+        margin-bottom: 10px;
+        background-color: white;
+      }
       .creator {
+        display: flex;
+        flex-direction: column;
         font-weight: 600;
+      }
+    }
+    .postMenu {
+      display: flex;
+      justify-content: space-around;
+      width: 8%;
+      font-size: $small-font-size - 2;
+      color: $dark-grey;
+      padding: 5px;
+      margin-right: 5px;
+      margin-bottom: 30px;
+      .menu {
+        cursor: pointer;
       }
     }
   }

@@ -1,6 +1,6 @@
 import React from "react";
 import IosAlarmOutline from "react-ionicons/lib/IosAlarmOutline";
-import IosExitOutline from "react-ionicons/lib/IosExitOutline";
+import { GiExitDoor } from "react-icons/gi";
 import IosPersonOutline from "react-ionicons/lib/IosPersonOutline";
 import { Link } from "react-router-dom";
 import styles from "./styles.scss";
@@ -48,8 +48,8 @@ const NavigationPresenter = ({ value, onInputChange, onSubmit }) => {
         </Column>
         <Column className={styles.column}>
           <NavIcon className={styles.navIcon}>
-            <Link to="/explore">
-              <IosExitOutline fontSize="40px" color="black" />
+            <Link to="/cwaler/dormitory">
+              <GiExitDoor size={30} color="black" />
             </Link>
           </NavIcon>
           <NavIcon className={styles.navIcon}>

@@ -3,13 +3,24 @@ import PostInputBoxPresenter from "./PostInputBoxPresenter";
 import PropTypes from "prop-types";
 
 class PostInputBoxContainer extends Component {
-  state = {
-    inputPost: false,
-    anonymous: true,
-    title: "",
-    content: "",
-    file: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputPost: false,
+      anonymous: true,
+      title: "",
+      content: "",
+      file: null
+    };
+  }
+  componentDidMount() {
+    if (this.props.inputPost) {
+      this.setState({
+        inputPost: this.props.inputPost
+      });
+    }
+  }
+
   static propTypes = {
     createPostClick: PropTypes.func
   };
@@ -47,9 +58,18 @@ class PostInputBoxContainer extends Component {
     }
   };
   _fileUploadHandler = e => {
-    this.setState({
-      file: e.target.files[0]
-    });
+    if (this.state.file) {
+      this.setState({
+        file: e.target.files[0]
+      });
+    } else {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const output = document.getElementById("preview");
+        output.src = reader.result;
+      };
+      reader.readAsDataURL(e.target.files[0]);
+    }
   };
   _handleWritePost = e => {
     const { title, content, file, anonymous } = this.state;
@@ -61,6 +81,7 @@ class PostInputBoxContainer extends Component {
       content: "",
       file: null
     });
+
     createPostClick(title, content, file, anonymous);
     e.preventDefault();
   };
@@ -73,17 +94,22 @@ class PostInputBoxContainer extends Component {
       _fileUploadHandler
     } = this;
     const { inputPost, anonymous, title, content, file } = this.state;
-    const { createPostClick } = this.props;
+    const { createPostClick, handlePostUpdate } = this.props;
+
     return (
       <PostInputBoxPresenter
         inputPost={inputPost}
-        handleWriteState={_handleWriteState}
         anonymous={anonymous}
         createPostClick={createPostClick}
-        handleWritePost={_handleWritePost}
-        title={title}
-        content={content}
-        file={file}
+        title={this.props.title ? this.props.title : title}
+        content={this.props.content ? this.props.content : content}
+        file={this.props.file ? this.props.file : file}
+        handleWritePost={handlePostUpdate ? handlePostUpdate : _handleWritePost}
+        handleWriteState={
+          this.props.handleWriteState
+            ? this.props.handleWriteState
+            : _handleWriteState
+        }
         stateConditionHandler={_stateConditionHandler}
         fileUploadHandler={_fileUploadHandler}
       />
