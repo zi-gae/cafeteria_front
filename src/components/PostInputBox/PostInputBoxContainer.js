@@ -57,20 +57,25 @@ class PostInputBoxContainer extends Component {
       }
     }
   };
-  _fileUploadHandler = e => {
-    if (this.state.file) {
-      this.setState({
-        file: e.target.files[0]
-      });
-    } else {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const output = document.getElementById("preview");
-        output.src = reader.result;
-      };
-      reader.readAsDataURL(e.target.files[0]);
-    }
+
+  _imagePreview = e => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const output = document.getElementById("preview");
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
   };
+
+  _fileUploadHandler = e => {
+    this.setState({
+      file: e.target.files[0]
+    });
+    console.log(e.target.file);
+
+    this._imagePreview(e);
+  };
+
   _handleWritePost = e => {
     const { title, content, file, anonymous } = this.state;
     const { createPostClick } = this.props;
@@ -81,7 +86,6 @@ class PostInputBoxContainer extends Component {
       content: "",
       file: null
     });
-
     createPostClick(title, content, file, anonymous);
     e.preventDefault();
   };
@@ -111,7 +115,11 @@ class PostInputBoxContainer extends Component {
             : _handleWriteState
         }
         stateConditionHandler={_stateConditionHandler}
-        fileUploadHandler={_fileUploadHandler}
+        fileUploadHandler={
+          this.props.fileUploadHandler
+            ? this.props.fileUploadHandler
+            : _fileUploadHandler
+        }
       />
     );
   }

@@ -15,32 +15,37 @@ const FeedPresenter = ({ loading, feed, searchTerm }) => {
       <Loading />
     </Container>
   ) : (
-    <Container className={styles.feed}>
-      <PostInputBox />
-      {searchTerm ? (
-        <Term
-          className={styles.term}
-        >{`"${searchTerm}"에 대한 검색 결과`}</Term>
-      ) : null}
-
-      {feed.map(post => (
-        <FeedPost
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          content={post.content}
-          creator={post.creator}
-          file={post.file}
-          likeCount={post.like_count}
-          comments={post.comments}
-          naturalTime={post.natural_time}
-          updated_at={post.updated_at}
-          commentCount={post.comment_count}
-          isLiked={post.is_liked}
-          anonymous={post.anonymous}
-        />
-      ))}
-    </Container>
+    <div className={styles.row}>
+      <Container className={`${styles.gridItem} ${styles.feed}`}>
+        <PostInputBox />
+        {searchTerm ? (
+          <Term
+            className={styles.term}
+          >{`"${searchTerm}"에 대한 검색 결과`}</Term>
+        ) : null}
+        {feed.map(post => (
+          <FeedPost
+            key={post.id}
+            id={post.id}
+            title={post.title}
+            content={post.content}
+            creator={post.creator}
+            file={post.file}
+            likeCount={post.like_count}
+            comments={post.comments}
+            naturalTime={post.natural_time}
+            updated_at={post.updated_at}
+            commentCount={post.comment_count}
+            isLiked={post.is_liked}
+            anonymous={post.anonymous}
+          />
+        ))}
+      </Container>
+      <div className={styles.smallBox}>
+        <div className={`${styles.gridItem} ${styles.riceBox}`}>학식</div>
+        <div className={`${styles.gridItem} ${styles.riceBox}`}>인기글</div>
+      </div>
+    </div>
   );
 };
 

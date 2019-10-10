@@ -21,6 +21,8 @@ const PostInputActionsPresenter = ({
   fileUploadHandler,
   file
 }) => {
+  console.log("file", file);
+
   return (
     <PostContent className={styles.postContent}>
       <div>
@@ -44,16 +46,7 @@ const PostInputActionsPresenter = ({
             name="content"
           />
           <ImgBox className={styles.imageBox}>
-            {file ? (
-              <Img
-                className={styles.postImg}
-                src={file}
-                id="preview"
-                alt={content}
-              />
-            ) : (
-              <Img className={styles.postImg} id="preview" />
-            )}
+            <Img className={styles.postImg} id="preview" />
           </ImgBox>
         </TextareaBox>
       </div>
@@ -66,6 +59,7 @@ const PostInputActionsPresenter = ({
             onChange={fileUploadHandler}
             multiple
             name="file"
+            accept=".gif, .jpg, .png"
           />
         </span>
 

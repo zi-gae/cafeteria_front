@@ -24,6 +24,24 @@ class FeedPostContainer extends Component {
       });
     }
   };
+
+  _imagePreview = e => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const output = document.getElementById("preview");
+      output.src = reader.result;
+    };
+    reader.readAsDataURL(e.target.files[0]);
+  };
+
+  _fileUploadHandler = e => {
+    this.setState({
+      file: e.target.files[0]
+    });
+    console.log("updatefile", e.target);
+
+    this._imagePreview(e);
+  };
   _handleUpdateConditon = () => {
     const {
       user,
@@ -41,7 +59,15 @@ class FeedPostContainer extends Component {
   _handlePostDelete = () => {
     const { id } = this.state;
     const { selectedDeletePost } = this.props;
-    selectedDeletePost(id);
+    const {
+      user,
+      creator: { username }
+    } = this.props;
+    if (user.username === username) {
+      selectedDeletePost(id);
+    } else {
+      alert("게시글 작성자가 아닙니다.");
+    }
   };
 
   _handlePostUpdate = () => {
@@ -67,7 +93,8 @@ class FeedPostContainer extends Component {
       _handlePostDelete,
       _handleUpdateConditon,
       _handlePostUpdate,
-      _handleWriteState
+      _handleWriteState,
+      _fileUploadHandler
     } = this;
 
     return (
@@ -89,6 +116,7 @@ class FeedPostContainer extends Component {
         handlePostDelete={_handlePostDelete}
         handleUpdateConditon={_handleUpdateConditon}
         handlePostUpdate={_handlePostUpdate}
+        fileUploadHandler={_fileUploadHandler}
       />
     );
   }

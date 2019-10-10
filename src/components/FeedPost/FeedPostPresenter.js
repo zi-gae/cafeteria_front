@@ -38,7 +38,8 @@ const FeedPostPresenter = ({
   handlePostDelete,
   handlePostUpdate,
   handleUpdateConditon,
-  handleWriteState
+  handleWriteState,
+  fileUploadHandler
 }) => {
   return update ? (
     <PostInputBox
@@ -50,6 +51,7 @@ const FeedPostPresenter = ({
       handlePostUpdate={handlePostUpdate}
       handleWriteState={handleWriteState}
       handlePostDelete={handlePostDelete}
+      fileUploadHandler={fileUploadHandler}
     />
   ) : (
     <Container className={styles.feedPost}>
@@ -110,7 +112,6 @@ FeedPostPresenter.propTypes = {
   }),
   content: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
-  file: PropTypes.string,
   likeCount: PropTypes.number.isRequired,
   comments: PropTypes.arrayOf(
     PropTypes.shape({
