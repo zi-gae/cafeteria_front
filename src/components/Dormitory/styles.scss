@@ -118,18 +118,46 @@
       opacity: 0.8;
     }
   }
-  .facebookLink {
-    display: flex;
-    align-items: center;
-    color: #385185;
-    justify-content: center;
-    margin-bottom: 30px;
-    svg {
-      margin-right: 5px;
-    }
-  }
-  .forgotLink {
-    font-size: $small-font-size;
+
+  .infoContent {
+    font-size: $normal-font-size;
     color: $cp-right-color;
+    .menuHeader {
+      cursor: pointer;
+      display: flex;
+      margin-top: 15px;
+      justify-content: center;
+      align-items: center;
+      font-size: $normal-font-size;
+      text-transform: uppercase;
+    }
+    .manualBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .manual {
+        display: flex;
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 10px;
+        background-color: $light-grey;
+        padding: 10px;
+        border-radius: 5px;
+        font-size: $normal-font-size;
+        .item {
+          &:nth-of-type(2) {
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+          &:nth-of-type(4) {
+            margin-top: 5px;
+            margin-bottom: 5px;
+          }
+          &:nth-of-type(6) {
+            margin-top: 5px;
+          }
+        }
+      }
+    }
   }
 }

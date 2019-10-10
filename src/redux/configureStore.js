@@ -7,10 +7,10 @@ import { createBrowserHistory } from "history";
 import { connectRouter, routerMiddleware } from "connected-react-router";
 import user from "redux/modules/user";
 import posts from "redux/modules/posts";
+import crawlers from "redux/modules/crawlers";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { i18nState } from "redux-i18n";
-// import Reactotron from "../ReactotronConfig";
 
 //현재 개발(dev) 상태인지 배포(prod) 상태 인지 구분
 const env = process.env.NODE_ENV;
@@ -29,6 +29,7 @@ if (env === "development") {
 const reducer = combineReducers({
   user,
   posts,
+  crawlers,
   router: connectRouter(history),
   i18nState: i18nState
 });
