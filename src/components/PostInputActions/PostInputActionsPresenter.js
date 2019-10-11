@@ -21,35 +21,29 @@ const PostInputActionsPresenter = ({
   fileUploadHandler,
   file
 }) => {
-  console.log("file", file);
-
   return (
     <PostContent className={styles.postContent}>
-      <div>
-        <TextareaBox className={styles.textareaBox}>
-          <Textarea
-            className={styles.title}
-            placeholder="제목"
-            value={title}
-            onChange={handleWriteState}
-            name="title"
-          />
-        </TextareaBox>
-      </div>
-      <div>
-        <TextareaBox className={styles.textareaBox}>
-          <Textarea
-            className={styles.textarea}
-            placeholder="이곳을 눌러 글을 작성하세요"
-            value={content}
-            onChange={handleWriteState}
-            name="content"
-          />
-          <ImgBox className={styles.imageBox}>
-            <Img className={styles.postImg} id="preview" />
-          </ImgBox>
-        </TextareaBox>
-      </div>
+      <TextareaBox className={styles.textareaBox}>
+        <Textarea
+          className={styles.title}
+          placeholder="제목"
+          value={title}
+          onChange={handleWriteState}
+          name="title"
+        />
+      </TextareaBox>
+      <TextareaBox className={styles.textareaBox}>
+        <Textarea
+          className={styles.textarea}
+          placeholder="이곳을 눌러 글을 작성하세요"
+          value={content}
+          onChange={handleWriteState}
+          name="content"
+        />
+        <ImgBox className={styles.imageBox}>
+          <Img className={styles.postImg} src={file} id="preview" />
+        </ImgBox>
+      </TextareaBox>
       <div className={styles.icon}>
         <span className={styles.filebox}>
           <label htmlFor="uploadFile" />

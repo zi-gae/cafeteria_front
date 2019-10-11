@@ -28,8 +28,6 @@ class FeedContainer extends Component {
     }
   }
 
-  // 학식 크롤러 만들어야 된다 건우야!
-
   componentWillReceiveProps = nextProps => {
     if (nextProps.feed) {
       this.setState({

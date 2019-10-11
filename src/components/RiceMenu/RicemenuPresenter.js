@@ -8,7 +8,11 @@ const Header = styled.div``;
 const SubHeader = styled.div``;
 const MenuContainer = styled.div``;
 
-const RicemenuPresenter = ({ studentFoodStore, professorFoodStore }) => {
+const RicemenuPresenter = ({
+  studentFoodStore,
+  dormitoryFoodStore,
+  professorFoodStore
+}) => {
   return (
     <Container className={styles.container}>
       <Header className={styles.title}>
@@ -40,8 +44,8 @@ const RicemenuPresenter = ({ studentFoodStore, professorFoodStore }) => {
       </MenuContainer>
       <SubHeader className={styles.subHeader}>기숙사 식당</SubHeader>
       <MenuContainer className={styles.menuContainer}>
-        {professorFoodStore.length > 0
-          ? professorFoodStore.map((r, i) => (
+        {dormitoryFoodStore.length > 0
+          ? dormitoryFoodStore.map((r, i) => (
               <div className={styles.list} key={i}>
                 {r.map((rice, index) =>
                   index === 0 ? null : (

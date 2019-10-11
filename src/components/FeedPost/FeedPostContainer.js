@@ -9,7 +9,8 @@ class FeedPostContainer extends Component {
     title: this.props.title,
     content: this.props.content,
     file: this.props.file,
-    anonymous: this.props.anonymous
+    anonymous: this.props.anonymous,
+    image: null
   };
 
   static propTypes;
@@ -36,12 +37,12 @@ class FeedPostContainer extends Component {
 
   _fileUploadHandler = e => {
     this.setState({
-      file: e.target.files[0]
+      file: e.target.files[0],
+      image: e.target.files[0]
     });
-    console.log("updatefile", e.target);
-
     this._imagePreview(e);
   };
+
   _handleUpdateConditon = () => {
     const {
       user,
@@ -71,7 +72,7 @@ class FeedPostContainer extends Component {
   };
 
   _handlePostUpdate = () => {
-    const { id, title, content, file, anonymous } = this.state;
+    const { id, title, content, file, anonymous, image } = this.state;
     const { postUpdate } = this.props;
     this.setState({
       update: false

@@ -7,10 +7,12 @@ const RiceMenuContainer = ({ rice }) => {
   const dormitoryFoodStore = rice.filter(
     rice => rice[0] === "조식" || rice[0] === "석식"
   );
+
   return (
     <RicemenuPresenter
       studentFoodStore={studentFoodStore}
       professorFoodStore={professorFoodStore}
+      dormitoryFoodStore={dormitoryFoodStore}
     />
   );
 };
