@@ -1,13 +1,17 @@
 import { connect } from "react-redux";
 import FeedContainer from "./FeedContainer";
 import { actionCreators as postActions } from "redux/modules/posts";
+import { actionCreators as crawlerActions } from "redux/modules/crawlers";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    posts: { feed }
+    posts: { feed },
+    crawlers
   } = state;
+
   return {
-    feed: feed
+    feed,
+    rice: crawlers
   };
 };
 
@@ -15,6 +19,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getFeed: () => {
       dispatch(postActions.getFeed());
+    },
+    getRice: () => {
+      dispatch(crawlerActions.getRice());
     }
   };
 };

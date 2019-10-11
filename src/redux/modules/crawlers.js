@@ -1,12 +1,20 @@
 import axios from "axios";
+import { actionCreators as userActions } from "redux/modules/user";
 
 const OUT_DORMITORY = "OUT_DORMITORY";
+const GET_RICE = "GET_RICE";
 
-const dormitoryOut = (location, dormitoryOutState) => {
+const dormitoryOut = dormitoryOutState => {
   return {
     type: OUT_DORMITORY,
-    location,
     dormitoryOutState
+  };
+};
+
+const reqeustGetRice = rice => {
+  return {
+    type: GET_RICE,
+    rice
   };
 };
 
@@ -55,32 +63,58 @@ const postDormitoryOut = (
   };
 };
 
+const getRice = () => {
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    const res = await axios({
+      url: `/crawler/rice/`,
+      method: "get",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    });
+    if (res.status === 200) {
+      dispatch(reqeustGetRice(res.data));
+    } else {
+      dispatch(userActions.logout());
+    }
+  };
+};
+
 const initialState = {};
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case OUT_DORMITORY:
       return applyDormitoryOut(state, action);
-
+    case GET_RICE:
+      return applyGetRice(state, action);
     default:
       return state;
   }
 };
 
 const applyDormitoryOut = (state, action) => {
-  const { location, dormitoryOutState } = action;
+  const { dormitoryOutState } = action;
   return {
     ...state,
-    location: {
-      ...location,
-      pathname: "/admin"
-    },
     dormitoryOutState: dormitoryOutState
   };
 };
 
+const applyGetRice = (state, action) => {
+  const { rice } = action;
+  return {
+    ...state,
+    rice
+  };
+};
+
 const actionCreators = {
-  postDormitoryOut
+  postDormitoryOut,
+  getRice
 };
 
 export { actionCreators };

@@ -5,11 +5,12 @@ import Loading from "components/Loading";
 import styled from "styled-components";
 import FeedPost from "components/FeedPost";
 import PostInputBox from "components/PostInputBox";
+import RiceMenu from "components/RiceMenu";
 
 const Container = styled.div``;
 const Term = styled.div``;
 
-const FeedPresenter = ({ loading, feed, searchTerm }) => {
+const FeedPresenter = ({ loading, feed, searchTerm, rice }) => {
   return loading ? (
     <Container className={styles.feed}>
       <Loading />
@@ -42,7 +43,7 @@ const FeedPresenter = ({ loading, feed, searchTerm }) => {
         ))}
       </Container>
       <div className={styles.smallBox}>
-        <div className={`${styles.gridItem} ${styles.riceBox}`}>학식</div>
+        <RiceMenu rice={rice} />
         <div className={`${styles.gridItem} ${styles.riceBox}`}>인기글</div>
       </div>
     </div>

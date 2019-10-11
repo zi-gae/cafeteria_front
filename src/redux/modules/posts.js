@@ -71,6 +71,7 @@ const requestDeletePost = postId => {
     postId
   };
 };
+
 // api actions
 
 const getFeed = () => {
@@ -190,7 +191,6 @@ const searchPosts = (token, searchTerm) => {
 };
 
 const createPost = (title, content, file, anonymous) => {
-  console.log(file);
   let formData = new FormData();
   formData.append("title", title);
   formData.append("content", content);
@@ -222,8 +222,6 @@ const createPost = (title, content, file, anonymous) => {
 
 const putPost = (postId, title, content, file, anonymous) => {
   let formData = new FormData();
-  console.log(file);
-
   formData.append("title", title);
   formData.append("content", content);
   formData.append("anonymous", anonymous);
@@ -296,7 +294,6 @@ const reducer = (state = initialState, action) => {
       return applyUpdatePost(state, action);
     case DELETE_POST:
       return applyDeletePost(state, action);
-
     default:
       return state;
   }

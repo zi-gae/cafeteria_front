@@ -14,7 +14,11 @@ class FeedContainer extends Component {
   };
 
   componentDidMount() {
-    const { getFeed, feed } = this.props;
+    const { getFeed, feed, getRice, rice } = this.props;
+    if (rice) {
+      getRice();
+    }
+
     if (!feed) {
       getFeed();
     } else {
@@ -23,6 +27,8 @@ class FeedContainer extends Component {
       });
     }
   }
+
+  // 학식 크롤러 만들어야 된다 건우야!
 
   componentWillReceiveProps = nextProps => {
     if (nextProps.feed) {
@@ -34,8 +40,19 @@ class FeedContainer extends Component {
 
   render() {
     const { loading } = this.state;
-    const { feed } = this.props;
-    return <FeedPresenter loading={loading} feed={feed} />;
+    const { feed, rice } = this.props;
+
+    const keys = Object.keys(rice);
+    let formattingRice = [];
+    for (let i in keys) {
+      if (rice[keys[i]].length > 0) {
+        formattingRice.push([keys[i], ...rice[keys[i]]]);
+      }
+    }
+
+    return (
+      <FeedPresenter loading={loading} feed={feed} rice={formattingRice} />
+    );
   }
 }
 
