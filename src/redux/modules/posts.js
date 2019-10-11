@@ -195,7 +195,7 @@ const createPost = (title, content, file, anonymous) => {
   formData.append("title", title);
   formData.append("content", content);
   formData.append("anonymous", anonymous);
-  if (file !== null) {
+  if (typeof file === "object") {
     formData.append("file", file, file.name);
   }
   return async (dispatch, getState) => {
@@ -225,7 +225,8 @@ const putPost = (postId, title, content, file, anonymous) => {
   formData.append("title", title);
   formData.append("content", content);
   formData.append("anonymous", anonymous);
-  if (file !== null) {
+
+  if (typeof file === "object") {
     formData.append("file", file, file.name);
   }
   return async (dispatch, getState) => {
