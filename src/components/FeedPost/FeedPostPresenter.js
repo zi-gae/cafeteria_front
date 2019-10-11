@@ -3,7 +3,6 @@ import styles from "./styles.scss";
 import PropTypes from "prop-types";
 import PostActions from "components/PostActions";
 import PostComments from "components/PostComments";
-import PostInputActions from "components/PostInputActions";
 import TimeStamp from "components/TimeStamp";
 import CommentBox from "components/CommentBox";
 import PostInputBox from "components/PostInputBox";

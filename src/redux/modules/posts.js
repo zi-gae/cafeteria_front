@@ -398,11 +398,7 @@ const applyDeletePost = (state, action) => {
   const { feed } = state;
   const { postId } = action;
 
-  const updateFeed = feed.filter(post => {
-    if (post.id !== postId) {
-      return post;
-    }
-  });
+  const updateFeed = feed.filter(post => post.id !== postId);
 
   return { ...state, feed: updateFeed };
 };

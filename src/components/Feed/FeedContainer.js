@@ -14,11 +14,8 @@ class FeedContainer extends Component {
   };
 
   componentDidMount() {
-    const { getFeed, feed, getRice, rice } = this.props;
-    if (rice) {
-      getRice();
-    }
-
+    const { getFeed, feed, getRice } = this.props;
+    getRice();
     if (!feed) {
       getFeed();
     } else {
@@ -40,11 +37,13 @@ class FeedContainer extends Component {
     const { loading } = this.state;
     const { feed, rice } = this.props;
 
-    const keys = Object.keys(rice);
     let formattingRice = [];
-    for (let i in keys) {
-      if (rice[keys[i]].length > 0) {
-        formattingRice.push([keys[i], ...rice[keys[i]]]);
+    if (rice) {
+      const keys = Object.keys(rice);
+      for (let i in keys) {
+        if (rice[keys[i]].length > 0) {
+          formattingRice.push([keys[i], ...rice[keys[i]]]);
+        }
       }
     }
 

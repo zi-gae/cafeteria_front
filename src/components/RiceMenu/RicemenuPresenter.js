@@ -11,14 +11,12 @@ const MenuContainer = styled.div``;
 const RicemenuPresenter = ({
   studentFoodStore,
   dormitoryFoodStore,
-  professorFoodStore
+  professorFoodStore,
+  today
 }) => {
   return (
     <Container className={styles.container}>
-      <Header className={styles.title}>
-        TU RESTAURANT
-        <Date className={styles.date}>2019-12-31</Date>
-      </Header>
+      <Header className={styles.title}>TU RESTAURANT</Header>
       <SubHeader className={styles.subHeader}>학생 식당</SubHeader>
       <MenuContainer className={styles.menuContainer}>
         {studentFoodStore.length > 0
@@ -48,7 +46,14 @@ const RicemenuPresenter = ({
           ? dormitoryFoodStore.map((r, i) => (
               <div className={styles.list} key={i}>
                 {r.map((rice, index) =>
-                  index === 0 ? null : (
+                  index === 0 ? (
+                    <span
+                      className={`${styles.menu} ${styles.menuTitle}`}
+                      key={index}
+                    >
+                      {rice}:{" "}
+                    </span>
+                  ) : (
                     <span className={styles.menu} key={index}>
                       {rice}{" "}
                     </span>
@@ -74,6 +79,7 @@ const RicemenuPresenter = ({
             ))
           : "오늘 식단 없음"}
       </MenuContainer>
+      <Date className={styles.date}>{today}</Date>
     </Container>
   );
 };

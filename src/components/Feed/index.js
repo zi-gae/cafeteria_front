@@ -6,12 +6,12 @@ import { actionCreators as crawlerActions } from "redux/modules/crawlers";
 const mapStateToProps = (state, ownProps) => {
   const {
     posts: { feed },
-    crawlers
+    crawlers: { rice }
   } = state;
 
   return {
     feed,
-    rice: crawlers
+    rice
   };
 };
 

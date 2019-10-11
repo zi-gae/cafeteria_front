@@ -13,7 +13,11 @@ class FeedPostContainer extends Component {
     image: null
   };
 
-  static propTypes;
+  static propTypes = {
+    user: PropTypes.object,
+    postUpdate: PropTypes.func,
+    selectedDeletePost: PropTypes.func
+  };
   _handleWriteState = e => {
     const {
       target: { name, value }
@@ -72,7 +76,7 @@ class FeedPostContainer extends Component {
   };
 
   _handlePostUpdate = () => {
-    const { id, title, content, file, anonymous, image } = this.state;
+    const { id, title, content, file, anonymous } = this.state;
     const { postUpdate } = this.props;
     this.setState({
       update: false
