@@ -10,7 +10,7 @@ const Username = styled.div``;
 const Message = styled.span``;
 const CommentUpdateBox = styled.span``;
 const TextareaBox = styled.div``;
-
+const Menu = styled.span``;
 const CommentFormPresenter = ({
   handleKeyPress,
   handleCommentInputChange,
@@ -21,8 +21,7 @@ const CommentFormPresenter = ({
   onCommnet,
   addCommentOnComment,
   addOnComment,
-  handleDeleteCommnet,
-  handleUpdateComment
+  handleDeleteCommnet
 }) => {
   return (
     <Container>
@@ -31,29 +30,27 @@ const CommentFormPresenter = ({
           <Username className={styles.username}>{username}</Username>
           {onCommnet ? (
             <CommentUpdateBox className={styles.onCommentMenu}>
-              <span className={styles.menu}>수정</span>
-              <span className={styles.menu} onClick={handleDeleteCommnet}>
+              <Menu className={styles.menu} onClick={handleDeleteCommnet}>
                 삭제
-              </span>
+              </Menu>
             </CommentUpdateBox>
           ) : (
             <CommentUpdateBox className={styles.commentMenu}>
-              <span className={styles.menu} onClick={handleUpdateComment}>
-                수정
-              </span>
-              <span className={styles.menu} onClick={handleDeleteCommnet}>
+              <Menu className={styles.menu} onClick={handleDeleteCommnet}>
                 삭제
-              </span>
-              <span className={styles.menu} onClick={addCommentOnComment}>
+              </Menu>
+              <Menu className={styles.menu} onClick={addCommentOnComment}>
                 대댓글
-              </span>
+              </Menu>
             </CommentUpdateBox>
           )}
         </div>
         <Message className={styles.message}>{message}</Message>
         <TimeStamp title="false" time={time} />
         {addOnComment ? (
-          <TextareaBox className={styles.textareaBox}>
+          <TextareaBox
+            className={`${styles.textareaBox} ${styles.onCommentBox}`}
+          >
             <Textarea
               className={styles.inputOnComment}
               placeholder="댓글 입력..."
@@ -78,8 +75,7 @@ CommentFormPresenter.propTypes = {
   handleKeyPress: PropTypes.func.isRequired,
   onComment: PropTypes.string.isRequired,
   handleCommentInputChange: PropTypes.func.isRequired,
-  handleDeleteCommnet: PropTypes.func.isRequired,
-  handleUpdateComment: PropTypes.func.isRequired
+  handleDeleteCommnet: PropTypes.func.isRequired
 };
 
 export default CommentFormPresenter;

@@ -43,7 +43,7 @@ class CommentFormContainer extends Component {
   };
 
   _handleDeleteCommnet = () => {
-    const { deleteOnComment, username, user, postId, commentId } = this.props;
+    const { deleteOnComment, username, user, commentId } = this.props;
     if (username !== user.username) {
       alert("댓글 작성자가 아닙니다.");
     } else {
@@ -59,13 +59,12 @@ class CommentFormContainer extends Component {
 
   render() {
     const { message, username, time, onCommnet } = this.props;
-    const { addOnComment, onComment } = this.state;
+    const { addOnComment, onComment, modifyComment } = this.state;
     const {
       _addCommentOnComment,
       _handleKeyPress,
       handleCommentInputChange,
-      _handleDeleteCommnet,
-      _handleUpdateComment
+      _handleDeleteCommnet
     } = this;
     return (
       <CommentFormPresenter
@@ -77,9 +76,9 @@ class CommentFormContainer extends Component {
         addOnComment={addOnComment}
         handleKeyPress={_handleKeyPress}
         onComment={onComment}
+        modifyComment={modifyComment}
         handleCommentInputChange={handleCommentInputChange}
         handleDeleteCommnet={_handleDeleteCommnet}
-        handleUpdateComment={_handleUpdateComment}
       />
     );
   }

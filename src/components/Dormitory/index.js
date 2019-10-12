@@ -5,11 +5,11 @@ import { withRouter } from "react-router-dom";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    crawlers: { dormitoryOutState, location }
+    crawlers: { dormitoryOutState }
   } = state;
+  console.log("dormitoryOutState", dormitoryOutState);
   return {
-    dormitoryOutState,
-    location
+    dormitoryOutState
   };
 };
 

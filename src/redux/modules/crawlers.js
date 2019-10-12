@@ -50,15 +50,16 @@ const postDormitoryOut = (
       data: { message }
     } = res;
     if (message.includes("비밀번호 입력")) {
-      dispatch(dormitoryOut(location, "pwdwrong"));
+      dispatch(dormitoryOut("pwdwrong"));
+      return "pwdwrong";
     } else if (message.includes("비밀번호 5회")) {
-      dispatch(dormitoryOut(location, "idlock"));
+      dispatch(dormitoryOut("idlock"));
     } else if (message.includes("같은 기간에")) {
-      dispatch(dormitoryOut(location, "overlap"));
+      dispatch(dormitoryOut("overlap"));
     } else if (message.includes("생활관생만")) {
-      dispatch(dormitoryOut(location, "notaccess"));
+      dispatch(dormitoryOut("notaccess"));
     } else {
-      dispatch(dormitoryOut(location, "success"));
+      dispatch(dormitoryOut("success"));
     }
   };
 };

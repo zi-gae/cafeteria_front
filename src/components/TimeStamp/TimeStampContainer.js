@@ -11,6 +11,7 @@ const TimeStampContainer = ({ title, time }) => {
   time = time.replace("an", "한");
   time = time.replace("seconds", "초");
   time = time.replace("a seconds", "1초");
+
   return <TimeStampPresenter title={title} time={time} />;
 };
 
