@@ -22,12 +22,18 @@ class CommentBoxContainer extends Component {
     const { submitComment } = this.props;
     if (key === "Enter") {
       e.preventDefault();
-      submitComment(comment);
-      this.setState({
-        comment: ""
-      });
+
+      if (comment.length < 1) {
+        alert("댓글을 입력해주세요");
+      } else {
+        submitComment(comment);
+        this.setState({
+          comment: ""
+        });
+      }
     }
   };
+
   render() {
     const { comment } = this.state;
     const { _handleInputChange, _handleKeyPress } = this;

@@ -1,23 +1,8 @@
-.comments {
-  font-size: $small-font-size + 1;
-  .commentOpen {
-    color: $dark-grey;
-    margin-bottom: 5px;
-    font-size: $small-font-size + 1;
-    cursor: pointer;
-  }
-}
 .updateDelete {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-.onComment {
-  background-color: #f9f9f9;
-  padding: 10px 10px 0px 10px;
-  border: 1px solid #e3e3e3;
-}
-
 .textareaBox {
   margin-left: 10px;
   margin-right: 30px;
@@ -72,7 +57,7 @@
     margin-bottom: 5px;
   }
 }
-.postMenu {
+.commentMenu {
   display: flex;
   justify-content: space-between;
   width: 12%;

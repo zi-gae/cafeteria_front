@@ -97,8 +97,8 @@ const FeedPostPresenter = ({
           isLiked={isLiked}
           postId={id}
         />
-        <PostComments comments={comments}></PostComments>
-        <CommentBox postId={id}></CommentBox>
+        <PostComments postId={id} comments={comments} />
+        <CommentBox postId={id} />
       </Action>
     </Container>
   );

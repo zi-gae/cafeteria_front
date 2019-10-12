@@ -2,8 +2,6 @@ import React from "react";
 import RicemenuPresenter from "./RicemenuPresenter";
 
 const RiceMenuContainer = ({ rice }) => {
-  console.log(rice);
-
   const studentFoodStore = rice.filter(
     rice => rice[0] !== "교직원" && rice[0] !== "조식" && rice[0] !== "석식"
   );
@@ -11,7 +9,6 @@ const RiceMenuContainer = ({ rice }) => {
   const dormitoryFoodStore = rice.filter(
     rice => rice[0] === "조식" || rice[0] === "석식"
   );
-  console.log(studentFoodStore);
   let today = new Date();
   const dd = String(today.getDate()).padStart(2, "0");
   const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!

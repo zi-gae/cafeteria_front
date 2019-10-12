@@ -383,6 +383,33 @@ Mixin에 @content이 이 포함 되있으면 `스타일` 부분을 return 할 �
 }
 ```
 
+# React 에서 Django file upload 과정
+## form-data 이용
+```javascript
+let formData = new FormData();
+formData.append("title", title);
+formData.append("content", content);
+formData.append("file", file, file.name);
+```
+위 처럼 원하는 데이터를 붙여준다.
+이때 file은 name 값도 *꼭 같이 붙여야* 한다.
+> 이틀을 삽질 후에 알았다..
+
+붙이지 않으면 `django` 에서 `file type` 을 인식을 못한다.
+
+```javascript
+await axios({
+      url: `/posts/`,
+      method: "post",
+      headers: {
+        Authorization: `my token`,
+        "Content-type": "multipart/form-data"
+      },
+      data: formData
+    })
+```
+위처럼 `axios` 를 이용해 전송하면 django 에서 정상적으로 file 을 받아 볼 수 있다. (굳이 `axios` 아니여도 됨)
+
 
 
 

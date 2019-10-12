@@ -12,6 +12,8 @@ const SET_POST_LIST = "SET_POST_LIST";
 const ADD_POST = "ADD_POST";
 const UPDATE_POST = "UPDATE_POST";
 const DELETE_POST = "DELETE_POST";
+const POST_ONCOMMENT = "POST_ONCOMMENT";
+const DELETE_COMMENT = "DELETE_COMMENT";
 // action creatorsa
 
 const setFeed = feed => {
@@ -57,11 +59,11 @@ const addPost = post => {
   };
 };
 
-const updatePost = (postId, post) => {
+const updatePost = (postId, comment) => {
   return {
     type: UPDATE_POST,
     postId,
-    post
+    comment
   };
 };
 
@@ -69,6 +71,22 @@ const requestDeletePost = postId => {
   return {
     type: DELETE_POST,
     postId
+  };
+};
+
+const requestOnComment = (postId, comment) => {
+  return {
+    type: POST_ONCOMMENT,
+    comment,
+    postId
+  };
+};
+
+const requestDeleteComment = (postId, commentId) => {
+  return {
+    type: DELETE_COMMENT,
+    postId,
+    commentId
   };
 };
 
@@ -195,7 +213,7 @@ const createPost = (title, content, file, anonymous) => {
   formData.append("title", title);
   formData.append("content", content);
   formData.append("anonymous", anonymous);
-  if (typeof file === "object") {
+  if (file !== null && typeof file === "object") {
     formData.append("file", file, file.name);
   }
   return async (dispatch, getState) => {
@@ -271,6 +289,54 @@ const deletePost = postId => {
   };
 };
 
+const putCommentOnComment = (postId, commentId, message) => {
+  let formData = new FormData();
+  formData.append("referComment", commentId);
+  formData.append("message", message);
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+    await axios({
+      url: `/posts/${postId}/${commentId}/comments/`,
+      method: "post",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-type": "multipart/form-data"
+      },
+      data: formData
+    }).then(res => {
+      if (res.status === 401) {
+        dispatch(userActions.logout());
+      } else {
+        dispatch(requestOnComment(postId, res.data));
+      }
+    });
+  };
+};
+
+const deleteComment = (postId, commentId) => {
+  return async (dispatch, getState) => {
+    const {
+      user: { token }
+    } = getState();
+
+    await axios({
+      url: `/posts/comments/${commentId}/`,
+      method: "delete",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(res => {
+      if (res.status == 400) {
+        dispatch(userActions.logout());
+      } else {
+        dispatch(requestDeleteComment(postId, commentId));
+      }
+    });
+  };
+};
+
 // initial state
 
 const initialState = {};
@@ -295,6 +361,10 @@ const reducer = (state = initialState, action) => {
       return applyUpdatePost(state, action);
     case DELETE_POST:
       return applyDeletePost(state, action);
+    case POST_ONCOMMENT:
+      return applyCommentOnComment(state, action);
+    case DELETE_COMMENT:
+      return applyDeleteComment(state, action);
     default:
       return state;
   }
@@ -402,6 +472,44 @@ const applyDeletePost = (state, action) => {
 
   return { ...state, feed: updateFeed };
 };
+
+const applyCommentOnComment = (state, action) => {
+  const { postId, comment } = action;
+  const { feed } = state;
+
+  const updateFeed = feed.map(post => {
+    if (post.id === postId) {
+      return {
+        ...post,
+        comments: [...post.comments, comment]
+      };
+    } else {
+      return post;
+    }
+  });
+  return { ...state, feed: updateFeed };
+};
+
+const applyDeleteComment = (state, action) => {
+  const { feed } = state;
+  const { postId, commentId } = action;
+
+  const updateFeed = feed.map(post => {
+    if (post.id === postId) {
+      return {
+        ...post,
+        comments: post.comments.filter(comment => commentId !== comment.id)
+      };
+    } else {
+      return post;
+    }
+  });
+
+  return {
+    ...state,
+    feed: updateFeed
+  };
+};
 // exports
 
 const actionCreators = {
@@ -412,7 +520,9 @@ const actionCreators = {
   searchByTerm,
   createPost,
   putPost,
-  deletePost
+  deletePost,
+  putCommentOnComment,
+  deleteComment
 };
 
 export { actionCreators };

@@ -5,7 +5,8 @@ class PostCommentsCotainer extends Component {
   constructor() {
     super();
     this.state = {
-      commentOpen: false
+      commentOpen: false,
+      addOnComment: false
     };
   }
 
@@ -14,15 +15,18 @@ class PostCommentsCotainer extends Component {
       commentOpen: !this.state.commentOpen
     });
   };
+
   render() {
-    const { comments } = this.props;
-    const { commentOpen } = this.state;
+    const { comments, postId } = this.props;
+    const { commentOpen, addOnComment } = this.state;
     const { _handleCommentOpen } = this;
     return (
       <PostCommentsPresenter
+        postId={postId}
         comments={comments}
         commentOpen={commentOpen}
         handleCommentOpen={_handleCommentOpen}
+        addOnComment={addOnComment}
       />
     );
   }

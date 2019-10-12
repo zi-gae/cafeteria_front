@@ -15,7 +15,7 @@ const Row = styled.div``;
 
 const FeedPresenter = ({ loading, feed, searchTerm, rice }) => {
   return loading ? (
-    <Container className={styles.feed}>
+    <Container className={styles.loading}>
       <Loading />
     </Container>
   ) : (
