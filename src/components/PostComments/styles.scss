@@ -1,5 +1,6 @@
 .comments {
   font-size: $small-font-size + 1;
+  width: 100%;
   .commentOpen {
     color: $dark-grey;
     margin-bottom: 5px;
@@ -59,6 +60,7 @@
 }
 .onCommentMenu {
   display: flex;
+  background-color: #292929;
   justify-content: space-between;
   width: 7%;
   font-size: $small-font-size - 2;

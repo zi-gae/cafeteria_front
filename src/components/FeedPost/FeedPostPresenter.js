@@ -64,11 +64,12 @@ const FeedPostPresenter = ({
           {anonymous ? (
             <Creator className={styles.creator}>
               {creator.name}
-              <TimeStamp time={naturalTime}></TimeStamp>
+              <TimeStamp title="true" time={naturalTime} />
             </Creator>
           ) : (
             <Creator className={styles.creator}>
-              익명이<TimeStamp time={naturalTime}></TimeStamp>
+              익명이
+              <TimeStamp title="true" time={naturalTime} />
             </Creator>
           )}
         </HeaderColumn>

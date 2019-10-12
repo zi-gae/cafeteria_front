@@ -4,7 +4,8 @@ import CommentFormPresenter from "./CommentFormPresenter";
 class CommentFormContainer extends Component {
   state = {
     addOnComment: false,
-    onComment: ""
+    onComment: "",
+    modifyComment: false
   };
 
   _addCommentOnComment = () => {
@@ -50,6 +51,12 @@ class CommentFormContainer extends Component {
     }
   };
 
+  _handleUpdateComment = () => {
+    this.setState({
+      modifyComment: true
+    });
+  };
+
   render() {
     const { message, username, time, onCommnet } = this.props;
     const { addOnComment, onComment } = this.state;
@@ -57,7 +64,8 @@ class CommentFormContainer extends Component {
       _addCommentOnComment,
       _handleKeyPress,
       handleCommentInputChange,
-      _handleDeleteCommnet
+      _handleDeleteCommnet,
+      _handleUpdateComment
     } = this;
     return (
       <CommentFormPresenter
@@ -71,6 +79,7 @@ class CommentFormContainer extends Component {
         onComment={onComment}
         handleCommentInputChange={handleCommentInputChange}
         handleDeleteCommnet={_handleDeleteCommnet}
+        handleUpdateComment={_handleUpdateComment}
       />
     );
   }

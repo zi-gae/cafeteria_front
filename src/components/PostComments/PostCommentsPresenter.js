@@ -19,7 +19,7 @@ const PostCommentsPresenter = ({
 }) => {
   return (
     <Container className={styles.comments}>
-      <List styles={styles.list}>
+      <List>
         {comments.length > 3 ? (
           <SpreadComment
             className={styles.commentOpen}
@@ -101,14 +101,18 @@ const Comment = ({
             time={time}
             addOnComment={addOnComment}
           />
-          <CommentOnComment parentCommentId={id} comments={comments} />
+          <CommentOnComment
+            postId={postId}
+            parentCommentId={id}
+            comments={comments}
+          />
         </>
       )}
     </Item>
   );
 };
 
-const CommentOnComment = ({ comments, parentCommentId }) => {
+const CommentOnComment = ({ postId, comments, parentCommentId }) => {
   return comments
     .filter(comment => comment.referComment !== null)
     .map(comment => {
@@ -116,6 +120,8 @@ const CommentOnComment = ({ comments, parentCommentId }) => {
         return (
           <OnCommentBox className={styles.onComment} key={comment.id}>
             <CommentForm
+              commentId={comment.id}
+              postId={postId}
               className={styles.onComment}
               message={comment.message}
               username={comment.creator.username}

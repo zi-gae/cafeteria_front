@@ -21,7 +21,8 @@ const CommentFormPresenter = ({
   onCommnet,
   addCommentOnComment,
   addOnComment,
-  handleDeleteCommnet
+  handleDeleteCommnet,
+  handleUpdateComment
 }) => {
   return (
     <Container>
@@ -37,7 +38,9 @@ const CommentFormPresenter = ({
             </CommentUpdateBox>
           ) : (
             <CommentUpdateBox className={styles.commentMenu}>
-              <span className={styles.menu}>수정</span>
+              <span className={styles.menu} onClick={handleUpdateComment}>
+                수정
+              </span>
               <span className={styles.menu} onClick={handleDeleteCommnet}>
                 삭제
               </span>
@@ -48,7 +51,7 @@ const CommentFormPresenter = ({
           )}
         </div>
         <Message className={styles.message}>{message}</Message>
-        <TimeStamp time={time} />
+        <TimeStamp title="false" time={time} />
         {addOnComment ? (
           <TextareaBox className={styles.textareaBox}>
             <Textarea
@@ -75,7 +78,8 @@ CommentFormPresenter.propTypes = {
   handleKeyPress: PropTypes.func.isRequired,
   onComment: PropTypes.string.isRequired,
   handleCommentInputChange: PropTypes.func.isRequired,
-  handleDeleteCommnet: PropTypes.func.isRequired
+  handleDeleteCommnet: PropTypes.func.isRequired,
+  handleUpdateComment: PropTypes.func.isRequired
 };
 
 export default CommentFormPresenter;
