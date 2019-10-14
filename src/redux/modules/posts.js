@@ -433,6 +433,7 @@ const applyAddComment = (state, action) => {
 
 const applySetPostList = (state, action) => {
   const { postList } = action;
+
   return {
     ...state,
     postList

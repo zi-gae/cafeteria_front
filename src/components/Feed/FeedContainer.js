@@ -48,7 +48,11 @@ class FeedContainer extends Component {
     }
 
     return (
-      <FeedPresenter loading={loading} feed={feed} rice={formattingRice} />
+      <FeedPresenter
+        loading={this.props.loading ? this.props.loading : loading}
+        feed={this.props.feedList ? this.props.feedList : feed}
+        rice={formattingRice}
+      />
     );
   }
 }

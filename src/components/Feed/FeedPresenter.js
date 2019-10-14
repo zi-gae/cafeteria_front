@@ -47,9 +47,9 @@ const FeedPresenter = ({ loading, feed, searchTerm, rice }) => {
       </Container>
       <SmallBox className={styles.smallBox}>
         <RiceMenu rice={rice} />
-        <RiceBox className={`${styles.gridItem} ${styles.riceBox}`}>
+        {/* <RiceBox className={`${styles.gridItem} ${styles.riceBox}`}>
           인기글
-        </RiceBox>
+        </RiceBox> */}
       </SmallBox>
     </Row>
   );

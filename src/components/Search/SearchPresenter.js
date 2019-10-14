@@ -1,15 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
 import FeedPresenter from "../Feed/FeedPresenter";
+import Feed from "components/Feed";
 
 const SearchPresenter = ({ searchTerm, loading, postList }) => {
-  return (
-    <FeedPresenter
-      searchTerm={searchTerm}
-      loading={loading}
-      feed={postList}
-    ></FeedPresenter>
-  );
+  return <Feed searchTerm={searchTerm} loading={loading} feedList={postList} />;
 };
 
 SearchPresenter.propTypes = {

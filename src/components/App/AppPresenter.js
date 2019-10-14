@@ -14,12 +14,8 @@ const AppPresenter = props => {
   return (
     <>
       {props.isLoggedIn ? <Navigation /> : null}
-      {isLoggedIn ? (
-        <PrivateRouter></PrivateRouter>
-      ) : (
-        <PublicRouter></PublicRouter>
-      )}
-      <Footer></Footer>
+      {isLoggedIn ? <PrivateRouter /> : <PublicRouter />}
+      <Footer />
     </>
   );
 };

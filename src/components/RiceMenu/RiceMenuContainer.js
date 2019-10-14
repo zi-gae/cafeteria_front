@@ -1,11 +1,11 @@
 import React from "react";
 import RicemenuPresenter from "./RicemenuPresenter";
 
-const RiceMenuContainer = ({ rice }) => {
+const RiceMenuContainer = ({ rice = [] }) => {
   const studentFoodStore = rice.filter(
-    rice => rice[0] !== "교직원" && rice[0] !== "조식" && rice[0] !== "석식"
+    rice => rice[0] !== "교직원식단" && rice[0] !== "조식" && rice[0] !== "석식"
   );
-  const professorFoodStore = rice.filter(rice => rice[0] === "교직원");
+  const professorFoodStore = rice.filter(rice => rice[0] === "교직원식단");
   const dormitoryFoodStore = rice.filter(
     rice => rice[0] === "조식" || rice[0] === "석식"
   );
