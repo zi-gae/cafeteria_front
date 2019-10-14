@@ -328,7 +328,7 @@ const deleteComment = (postId, commentId) => {
         Authorization: `JWT ${token}`
       }
     }).then(res => {
-      if (res.status == 400) {
+      if (res.status === 400) {
         dispatch(userActions.logout());
       } else {
         dispatch(requestDeleteComment(postId, commentId));
