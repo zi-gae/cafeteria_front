@@ -7,7 +7,6 @@ const mapStateToProps = (state, ownProps) => {
   const {
     crawlers: { dormitoryOutState }
   } = state;
-  console.log("dormitoryOutState", dormitoryOutState);
   return {
     dormitoryOutState
   };
